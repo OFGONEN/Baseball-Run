@@ -330,7 +330,7 @@ public class PlayerController : MonoBehaviour
 		animatorGroup.SetBool( "walking", false );
 		animatorGroup.SetBool( "rapping", true );
 
-		var duration = GameSettings.Instance.player_duration_obstacleInteraction;
+		float duration = 0f;
 		statusDepleteSpeed = Mathf.Min( statusPoint_Current, currentObstacle.StatusPoint ) / duration;
 
 		obstacleInteractonSequence = DOTween.Sequence();
