@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723800683477006462}
-  - component: {fileID: 723800683477006459}
+  - component: {fileID: 6362536634872911948}
   m_Layer: 29
   m_Name: modifier_gate_positive
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &723800683477006459
+--- !u!114 &6362536634872911948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,13 +42,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 723800683477006460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e7a481791c93a04d93fc531fe7b3933, type: 3}
+  m_Script: {fileID: 11500000, guid: cd7e2bac34dfe4c48a37f92df5087a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   modifier_Event: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
   modifier_Point: 10
-  modifier_ParticleName: green
+  modifier_ParticleName: money_scatter
   pairGate: {fileID: 0}
 --- !u!1 &723800685063831018
 GameObject:

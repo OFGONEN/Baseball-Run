@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2092158969843411621}
-  - component: {fileID: 2092158969843411622}
+  - component: {fileID: 7429856120270993813}
   m_Layer: 29
   m_Name: modifier_resting_negative
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2092158969843411622
+--- !u!114 &7429856120270993813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2092158969843411623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acde7dd52453eb849882a26fee006ff6, type: 3}
+  m_Script: {fileID: 11500000, guid: 66cce71678f7e4e369afda3140062341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
