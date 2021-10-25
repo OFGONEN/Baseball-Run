@@ -13,8 +13,6 @@ public class Status : ScriptableObject
     public Status prevStatus;
     public Color status_Color;
     public string status_Name;
-	public int status_Walking;
-    public float status_Walking_Speed = 1f;
     public float status_Point;
 #endregion
 

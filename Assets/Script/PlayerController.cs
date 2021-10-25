@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour
 
     private void LevelStartResponse()
     {
-        animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
-        animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
+        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
+        // animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
 
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
@@ -438,12 +438,12 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
 		//TODO:(ofg) We can player different animation when transforming UP
-        animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
+        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
 		animatorGroup.SetBool( "walking", false );
 		animatorGroup.SetBool( "rapping", false );
 		animatorGroup.SetBool( "transform_positive", true);
 		animatorGroup.SetTrigger( "transform" );
-		animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
+		// animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
 
 		particleSystem_transformUp.Play();
 	}
@@ -458,12 +458,12 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
         //TODO:(ofg) We can player different animation when transforming DOWN
-        animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
+        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
         animatorGroup.SetBool( "walking", false );
 		animatorGroup.SetBool( "rapping", false );
 		animatorGroup.SetBool( "transform_positive", false);
 		animatorGroup.SetTrigger( "transform" );
-		animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
+		// animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
 
 		particleSystem_transformDown.Play();
 	}
