@@ -36,7 +36,7 @@ namespace FFEditor
 
 				EditorSceneManager.MarkSceneDirty( activeScene );
 
-				var rootObjects = EditorSceneManager.GetActiveScene().GetRootGameObjects();
+				var rootObjects = activeScene.GetRootGameObjects();
 
                 for( var a = rootObjects.Length - 1; a >= 0 ; a-- )
                 {
@@ -54,6 +54,33 @@ namespace FFEditor
 						}
                     }
                 }
+
+				EditorSceneManager.SaveScene( activeScene );
+			}
+        }
+
+        [ Button() ]
+        public void PairWaypoints()
+        {
+			var scenes = EditorBuildSettings.scenes;
+
+			for( var i = 1; i <= scenes.Length - 1 ; i++ )
+            {
+				var activeScene = EditorSceneManager.OpenScene( scenes[ i ].path );
+
+				EditorSceneManager.MarkSceneDirty( activeScene );
+
+				var waypointsParent = GameObject.FindGameObjectWithTag( "WaypointParent" ).transform;
+
+                for( var a = 0; a < waypointsParent.childCount - 1; a++ )
+                {
+					var waypoint = waypointsParent.GetChild( a ).GetComponent< Waypoint >();
+					var waypoint_Next = waypointsParent.GetChild( a + 1 ).GetComponent< Waypoint >();
+
+					waypoint.Editor_SetNextWaypoint( waypoint_Next );
+
+					PrefabUtility.RecordPrefabInstancePropertyModifications( waypoint );
+				}
 
 				EditorSceneManager.SaveScene( activeScene );
 			}
