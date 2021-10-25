@@ -33,11 +33,9 @@ MonoBehaviour:
   player_speed_turning: 10
   player_speed_approach: 5
   player_speed_statusDepleting: 21
-  player_duration_obstacleInteraction: 2
   camera_speed_follow: 5
   camera_duration_movement: 1
   camera_duration_moveAndLook: 0.5
   camera_clamp_LevelEndRotation: 20
   camera_speed_LevelEndRotation: 12.5
   status_maxPoint: 200
-  status_depleted_color: {r: 0.48235294, g: 0.44313726, b: 0.44313726, a: 0}

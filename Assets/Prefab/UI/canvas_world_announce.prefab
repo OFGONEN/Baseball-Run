@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8932405526349790574}
   - component: {fileID: 8932405526349790572}
   - component: {fileID: 8932405526349790573}
-  - component: {fileID: 8932405526349790561}
-  - component: {fileID: -1245400340535387402}
+  - component: {fileID: 8980781438906526860}
+  - component: {fileID: 6312054376874946424}
   m_Layer: 31
   m_Name: canvas_world_announce
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &8932405526349790561
+--- !u!114 &8980781438906526860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8932405526349790575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae2a27c060c1ea4da964df33cc881e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 34f4c9cdd072f41c58b0aa25de1f93e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiTransform: {fileID: 8932405526349790574}
@@ -106,7 +106,7 @@ MonoBehaviour:
   playerStatusProperty: {fileID: 11400000, guid: 839cbad99c40a6543822999b9eaafc65, type: 2}
   targetPoint: {x: 0, y: 0.4, z: -0.25}
   targetSize: {x: 1.3, y: 1.3, z: 0}
---- !u!114 &-1245400340535387402
+--- !u!114 &6312054376874946424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8932405526349790575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7866969bff85241b1a6af9332028fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b46579712da946af8eb8edb45425632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sharedTransformReference: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
