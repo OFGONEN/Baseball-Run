@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9127808798210200433}
-  - component: {fileID: 2575339873354737194}
+  - component: {fileID: 6256430893105879532}
   m_Layer: 0
   m_Name: road_curved_left
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2575339873354737194
+--- !u!114 &6256430893105879532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4477236525869288318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338771c470aaa604db58cab26a00f5c1, type: 3}
+  m_Script: {fileID: 11500000, guid: a5059bdbc26fa4ec69941b7d4f2bef0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player_EnteredEvent: {fileID: 0}
