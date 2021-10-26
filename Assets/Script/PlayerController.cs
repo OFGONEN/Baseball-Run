@@ -36,12 +36,8 @@ public class PlayerController : MonoBehaviour
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformUp;
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformDown;
 
-    [ BoxGroup( "Rapping Camera" ) ] public Vector3 cameraRappingPositon;
-    [ BoxGroup( "Rapping Camera" ) ] public Vector3 cameraRappingRotation;
-
 	// Private Fields \\
 	private Waypoint currentWaypoint;
-	private Obstacle currentObstacle;
 	private float modelRotationAmount;
 	private float vertical_speed;
 
@@ -137,14 +133,6 @@ public class PlayerController : MonoBehaviour
         if( currentWaypoint != null )
 			updateMethod = Approach_DepletingWaypointMethod;
     }
-
-	public void StartApproachObstacle( Obstacle obstacle )
-	{
-		animatorGroup.SetBool( "walking", true );
-
-		currentObstacle = obstacle;
-		updateMethod    = ApproachObstacleMethod;
-	}
 #endregion
 
 #region Implementation
@@ -158,9 +146,6 @@ public class PlayerController : MonoBehaviour
 
     private void LevelStartResponse()
     {
-        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
-        // animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
-
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
 		transform.forward = currentWaypoint.transform.forward;
@@ -196,7 +181,6 @@ public class PlayerController : MonoBehaviour
 		vertical_speed = GameSettings.Instance.player_speed_catwalking;
 
 		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "rapping", true );
 
 		animatorGroup.SetBool( "catwalking", true );
 		animatorGroup.SetWeightOfLayer( 1, 1 );
@@ -281,121 +265,6 @@ public class PlayerController : MonoBehaviour
 		ApproachWaypointMethod();
 	}
 
-	private void ApproachObstacleMethod()
-	{
-		var position_gfx               = modelTransform.localPosition;
-		var model_targetPosition       = currentObstacle.TargetPoint;
-		var model_TargetPosition_Local = transform.InverseTransformPoint( model_targetPosition );
-
-		if( Vector3.Distance( modelTransform.position.SetY( 0 ), model_targetPosition ) <= 0.1f )
-		{
-			FFLogger.Log( "Target Approached" );
-			updateMethod = ExtensionMethods.EmptyMethod;
-
-			position_gfx.x               = model_TargetPosition_Local.x;
-			position_gfx.z               = 0;
-			modelTransform.localPosition = position_gfx;
-
-			modelTransform.LookAtAxis( currentObstacle.LookTargetPoint, Vector3.up );
-
-			if( currentObstacle.CameraTransition )
-				cameraController.MoveAndLook( cameraRappingPositon, cameraRappingRotation );
-
-			StartObstacleSequence();
-			return;
-		}
-
-		var targetPosition       = currentObstacle.transform.position + currentObstacle.TargetDistance;
-		var position             = transform.position;
-		var targetPosition_Local = transform.InverseTransformPoint( targetPosition );
-
-		var newPosition = Vector3.MoveTowards( position, 
-							position + transform.forward * targetPosition_Local.z, 
-							Time.deltaTime * GameSettings.Instance.player_speed_approach );
-
-		var newPosition_GFX_X = Mathf.MoveTowards( position_gfx.x, 
-									model_TargetPosition_Local.x, 
-									Time.deltaTime * GameSettings.Instance.player_speed_horizontal );
-
-		position_gfx.x               = newPosition_GFX_X;
-		transform.position           = newPosition;
-		modelTransform.localPosition = position_gfx;
-
-		modelTransform.LookAtOverTimeAxis( currentObstacle.LookTargetPoint, Vector3.up, GameSettings.Instance.player_speed_turning );
-	}
-
-	private void StartObstacleSequence()
-	{
-		// Animator
-		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "rapping", true );
-
-		float duration = 0f;
-		statusDepleteSpeed = Mathf.Min( statusPoint_Current, currentObstacle.StatusPoint ) / duration;
-
-		obstacleInteractonSequence = DOTween.Sequence();
-
-		obstacleInteractonSequence.Append( transform.DOMove( transform.position + currentObstacle.RappingDistance, duration ) );
-		obstacleInteractonSequence.Join( currentObstacle.StartRapping( duration ) );
-
-		obstacleInteractonSequence.OnUpdate( OnSequenceUpdate );
-
-		if( statusPoint_Current > currentObstacle.StatusPoint )
-			obstacleInteractonSequence.OnComplete( OnSequenceComplete_Win );
-		else
-			obstacleInteractonSequence.OnComplete( OnSequenceComplete_Lost );
-
-	}
-
-	private void OnSequenceUpdate()
-	{
-		var lossStatus = Time.deltaTime * statusDepleteSpeed;
-
-		transformAfterSequence |= ModifyStatus( -lossStatus );
-		currentObstacle.StatusPoint -= lossStatus;
-	}
-
-	private void OnSequenceComplete_Win()
-	{
-		obstacleInteractonSequence.Kill();
-		obstacleInteractonSequence = null;
-
-		if( transformAfterSequence )
-		{
-			transformAfterSequence = false;
-			TransformDown();
-		}
-		else 
-		{
-			animatorGroup.SetBool( "walking", true );
-			animatorGroup.SetBool( "rapping", false );
-		}
-
-		if (currentWaypoint.NextWaypoint != null )
-		{
-			var nextWaypoint     = currentWaypoint.NextWaypoint;
-			var relativePosition = nextWaypoint.transform.InverseTransformPoint( transform.position );
-
-			if( relativePosition.z > 0 )
-				currentWaypoint = nextWaypoint;
-		}
-
-		if( currentObstacle.CameraTransition )
-			cameraController.ReturnDefault();
-
-		currentObstacle.Rapping_Lost();
-		startApproachMethod();
-	}
-
-	private void OnSequenceComplete_Lost()
-	{
-		obstacleInteractonSequence.Kill();
-		obstacleInteractonSequence = null;
-
-		currentObstacle.Rapping_Won();
-		LevelComplete( levelFailEvent );
-	}
-
 	private bool ModifyStatus( float modifyAmount )
 	{
 		bool transform = false;
@@ -438,12 +307,9 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
 		//TODO:(ofg) We can player different animation when transforming UP
-        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
 		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "rapping", false );
 		animatorGroup.SetBool( "transform_positive", true);
 		animatorGroup.SetTrigger( "transform" );
-		// animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
 
 		particleSystem_transformUp.Play();
 	}
@@ -458,12 +324,9 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
         //TODO:(ofg) We can player different animation when transforming DOWN
-        // animatorGroup.SetFloat( "walking_speed", currentStatus.status_Walking_Speed );
         animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "rapping", false );
 		animatorGroup.SetBool( "transform_positive", false);
 		animatorGroup.SetTrigger( "transform" );
-		// animatorGroup.SetInteger( "walk", currentStatus.status_Walking );
 
 		particleSystem_transformDown.Play();
 	}
@@ -473,7 +336,6 @@ public class PlayerController : MonoBehaviour
 		animatorGroup.SetWeightOfLayer( 1, 0 );
 
 		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "rapping", false );
 		animatorGroup.SetTrigger( "complete" );
 
 		completeEvent.Raise();
@@ -483,15 +345,7 @@ public class PlayerController : MonoBehaviour
 
 #region Editor Only
 #if UNITY_EDITOR
-	private void OnDrawGizmos()
-	{
-		var final_cameraPosition = transform.position + cameraRappingPositon;
 
-		Handles.ArrowHandleCap( 0, final_cameraPosition, Quaternion.Euler( cameraRappingRotation ), 1f, EventType.Repaint );
-		Handles.Label( final_cameraPosition.AddUp( 0.5f ), "Final Camera Position\n" + final_cameraPosition );
-
-	}
-	
 	[ Button() ]
 	public void StartPlayer()
 	{
