@@ -45,7 +45,6 @@ namespace FFStudio
 		[ BoxGroup( "Player" ), Tooltip( "Player model's turning speed" ) ] public float player_speed_turning = 20f;
 		[ BoxGroup( "Player" ), Tooltip( "Player's approach to obstacle speed" ) ] public float player_speed_approach = 5f;
 		[ BoxGroup( "Player" ), Tooltip( "Player's Catwalk status depleting speed" ) ] public float player_speed_statusDepleting = 5f;
-		[ BoxGroup( "Player" ), Tooltip( "Player's interaction duration with obstacle" ) ] public float player_duration_obstacleInteraction = 1.5f;
 
 		// Camera
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's target follow speed" ) ] public float camera_speed_follow = 1f;
@@ -56,7 +55,6 @@ namespace FFStudio
 
 		// Status
 		[ BoxGroup( "Status" ), Tooltip( "Max status point" ) ] public float status_maxPoint = 200f;
-		[ BoxGroup( "Status" ), Tooltip( "Obstacle depleted status color" ) ] public Color status_depleted_color;
 #endregion
 
 #region Implementation

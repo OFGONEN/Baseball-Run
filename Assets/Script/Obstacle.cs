@@ -132,8 +132,8 @@ public class Obstacle : MonoBehaviour
 	{
 		var newIntValue = ( int )newValue;
 
-		if( (int)currentStatusPoint != newIntValue )
-			worldUIText.color = Color.Lerp( GameSettings.Instance.status_depleted_color, statusColor , currentStatusPoint / statusPoint );
+		// if( (int)currentStatusPoint != newIntValue )
+			// worldUIText.color = Color.Lerp( GameSettings.Instance.status_depleted_color, statusColor , currentStatusPoint / statusPoint );
 
 		currentStatusPoint = newValue;
 	}
