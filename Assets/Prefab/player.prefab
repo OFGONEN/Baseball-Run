@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 1337132547906357657}
   - component: {fileID: 1337132547906357656}
   - component: {fileID: 6222906850955330094}
+  - component: {fileID: 3811629588138237236}
   m_Layer: 31
   m_Name: canvas_world_status
   m_TagString: Untagged
@@ -238,6 +239,19 @@ MonoBehaviour:
   fillingImage: {fileID: 1496507340415610016}
   statusProperty: {fileID: 11400000, guid: 839cbad99c40a6543822999b9eaafc65, type: 2}
   statusText: {fileID: 1337132547058402973}
+--- !u!114 &3811629588138237236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337132547906357658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a771ab0c35d74e47a47feffdd231159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3181949308013251378}
 --- !u!1 &1496507340415610718
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,8 +649,6 @@ MonoBehaviour:
   currentStatus: {fileID: 11400000, guid: 2e6acfcfa457bb3469418da1f3a92f0c, type: 2}
   particleSystem_transformUp: {fileID: 5432064833605094242}
   particleSystem_transformDown: {fileID: 2542549201762901667}
-  cameraRappingPositon: {x: 0, y: 0, z: 0}
-  cameraRappingRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &3191896667758526876
 MonoBehaviour:
   m_ObjectHideFlags: 0
