@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     public EventListenerDelegateResponse ballStrikeEvent;
     public EventListenerDelegateResponse ballCatchEvent;
 
+    [ BoxGroup( "Fired Events" ) ] public ParticleSpawnEvent particleSpawnEvent;
 
     [ BoxGroup( "Setup" ) ] public Transform ball;
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
@@ -23,7 +24,6 @@ public class Ball : MonoBehaviour
     public SharedVector3 ball_initial_TargetPoint;
     [ BoxGroup( "Shared Variables" ) ]
     public SharedVector3 ball_secondary_TargetPoint;
-
 
     private GameSettings Settings => GameSettings.Instance;
 #endregion
@@ -72,6 +72,9 @@ public class Ball : MonoBehaviour
 		sequence.Append( tween_strike );
 		sequence.Append( tween_fly );
 		sequence.OnComplete( OnBallStrikeComplete );
+
+		// Ball Catch particle effect
+		particleSpawnEvent.Raise( "ball_catch", ball_secondary_TargetPoint.sharedValue );
 	}
 
 	private void BallCatchResponse()
@@ -82,6 +85,8 @@ public class Ball : MonoBehaviour
 		var tween_catch = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point );
 		tween_catch.SetEase( Settings.ball_curve_catch_point );
 		tween_catch.OnComplete( OnBallCatchComplete );
+
+		//
 	}
 
 	private void OnBallStrikeComplete()
