@@ -85,6 +85,8 @@ public class Ball : MonoBehaviour
 
     private void BallStrikeResponse()
     {
+		FFLogger.Log( "Ball Strike" );
+
 		var strikeEvent = ballStrikeEventListener.gameEvent as FloatGameEvent;
 		ballHeightProperty.SetValue( strikeEvent.eventValue * Settings.ball_height_cofactor_strike );
 
@@ -109,6 +111,8 @@ public class Ball : MonoBehaviour
 
 	private void BallCatchResponse()
 	{
+		FFLogger.Log( "Ball Catch" );
+
 		ball.position = ball_initial_TargetPoint.sharedValue;
 		ball.gameObject.SetActive( true );
 

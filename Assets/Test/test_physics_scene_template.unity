@@ -450,6 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shared_Initial_Point: {fileID: 11400000, guid: 002fcbb31c15d402ea7542d7dcded71e, type: 2}
   shared_Secondary_Point: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
+  tapInput: {fileID: 11400000, guid: 182cfa2632cfdba49bfaf3471d114d23, type: 2}
+  levelRevealed: {fileID: 11400000, guid: be5502ede7f194b4cad32082aa9196eb, type: 2}
+  levelStarted: {fileID: 11400000, guid: efef06bf257ee27438d6c2aab4936226, type: 2}
   catchEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
   strikeEvent: {fileID: 11400000, guid: fb9cd0b71a0914b688eae2070ed457f7, type: 2}
   strikePoint: {fileID: 2088142487}
