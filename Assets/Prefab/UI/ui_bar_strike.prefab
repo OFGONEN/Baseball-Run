@@ -92,7 +92,7 @@ MonoBehaviour:
   destinationTransform: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   startScale: {x: 0, y: 0, z: 0}
-  indicatorProgress: {fileID: 11400000, guid: 62c04556759734626b78b5a319090f75, type: 2}
+  indicatorProgress: {fileID: 11400000, guid: 2d3bc0c5280db4537b00fd3be3178758, type: 2}
   offsetPercentage: 0
 --- !u!1 &6130953405975623229
 GameObject:
@@ -191,5 +191,5 @@ MonoBehaviour:
     gameEvent: {fileID: 11400000, guid: be5502ede7f194b4cad32082aa9196eb, type: 2}
   tapInputListener:
     gameEvent: {fileID: 11400000, guid: 182cfa2632cfdba49bfaf3471d114d23, type: 2}
-  strikeEvent: {fileID: 11400000, guid: fb9cd0b71a0914b688eae2070ed457f7, type: 2}
-  indicatorValue: {fileID: 11400000, guid: 62c04556759734626b78b5a319090f75, type: 2}
+  strikeEvent: {fileID: 11400000, guid: e3d3aac6210234c6fae85b46d004dbff, type: 2}
+  indicatorValue: {fileID: 11400000, guid: 2d3bc0c5280db4537b00fd3be3178758, type: 2}
