@@ -27,13 +27,18 @@ namespace FFStudio
 		[ Foldout( "UI Settings" ), Tooltip( "Duration of the movement for floating ui element" ) ] public float ui_Entity_FloatingMove_TweenDuration;
         [ Foldout( "UI Settings" ), Tooltip( "Percentage of the screen to register a swipe"     ) ] public int swipeThreshold;
 
-		// World UI
+		// Input
 		[ Foldout( "Input" ), Tooltip( "Input horizontal threshold" ) ] public float input_horizontal_threshold = 0.1f;
 		[ Foldout( "Input" ), Tooltip( "Input horizontal speed clamp" ) ] public float input_horizontal_clamp = 10f;
 
-		// World UI
-		[Foldout( "UI World" ), Tooltip( "Modifier announce duration" )] public float ui_world_modifier_duration = 0.75f;
-		[Foldout( "UI World" ), Tooltip( "Status announce duration" )] public float ui_world_announce_duration = 0.75f;
+		// Game UI
+		[ BoxGroup( "UI Game" ), Tooltip( "Modifier announce duration" ) ] public float ui_world_modifier_duration = 0.75f;
+		[ BoxGroup( "UI Game" ), Tooltip( "Status announce duration" ) ] public float ui_world_announce_duration = 0.75f;
+		[ BoxGroup( "UI Game" ), Tooltip( "Strike Indicator Move Speed" ) ] public float ui_world_indicator_speed = 1f;
+
+		[ BoxGroup( "UI Game" ), Tooltip( "Strike Indicator Red Value" ) ] public float ui_world_indicator_red = 0.25f;
+		[ BoxGroup( "UI Game" ), Tooltip( "Strike Indicator Yellow Value" ) ] public float ui_world_indicator_yellow = 0.5f;
+		[ BoxGroup( "UI Game" ), Tooltip( "Strike Indicator Green Value" ) ] public float ui_world_indicator_green = 1f;
 
 		// Player
 		[ BoxGroup( "Player" ), Tooltip( "Player's target point check distance" ) ] public float player_target_checkDistance = 0.1f;
