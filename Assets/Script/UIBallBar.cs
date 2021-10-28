@@ -47,6 +47,13 @@ public class UIBallBar : UILoadingBar
 #endregion
 
 #region Implementation
+	protected override void OnValueChange()
+    {
+		var ratio = progressProperty.sharedValue / GameSettings.Instance.ball_height_max;
+
+		fillingImage.fillAmount = ratio;
+	}
+
     private void LevelStartedResponse()
     {
 		GoToTargetPosition();

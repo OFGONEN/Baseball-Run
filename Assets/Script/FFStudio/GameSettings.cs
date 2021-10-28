@@ -51,6 +51,20 @@ namespace FFStudio
 		[ BoxGroup( "Player" ), Tooltip( "Player's approach to obstacle speed" ) ] public float player_speed_approach = 5f;
 		[ BoxGroup( "Player" ), Tooltip( "Player's Catwalk status depleting speed" ) ] public float player_speed_statusDepleting = 5f;
 
+		// Ball
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching strike point" ) ] public float ball_duration_strike_point = 1f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching strike point" ) ] public AnimationCurve ball_curve_strike_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching Fly point" ) ] public float ball_duration_fly_point = 1f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching Fly point" ) ] public AnimationCurve ball_curve_fly_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching Catch point" ) ] public float ball_duration_catch_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching Catch point" ) ] public AnimationCurve ball_curve_catch_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball max Height" ) ] public float ball_height_max = 100f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball strike cofactor value" ) ] public float ball_height_cofactor_strike = 25f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball Height Deplete speed" ) ] public float ball_height_deplete_speed = 1f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball positive modify cofactor value" ) ] public float ball_modify_cofactor_positive = 0.25f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball negative modify cofactor value" ) ] public float ball_modify_cofactor_negative = 0.15f;
+
+
 		// Camera
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's target follow speed" ) ] public float camera_speed_follow = 1f;
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's movement duration" ) ] public float camera_duration_movement = 1f;
