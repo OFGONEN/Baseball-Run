@@ -12,11 +12,7 @@ public class CameraController : MonoBehaviour
 {
 #region Fields
     [ Header( "Event Listeners" ) ] 
-    public EventListenerDelegateResponse levelRevealedListener;
     public MultipleEventListenerDelegateResponse levelCompleteListener;
-
-    [ Header( "Fired Events" ) ] 
-    public GameEvent levelStartEvent;
 
     [ HorizontalLine ]
     [ BoxGroup( "Setup" ), SerializeField ] private Transform target;
@@ -38,13 +34,11 @@ public class CameraController : MonoBehaviour
 #region Unity API
     private void OnEnable()
     {
-		levelRevealedListener.OnEnable();
 		levelCompleteListener.OnEnable();
 	}
     
     private void OnDisable()
     {
- 		levelRevealedListener.OnDisable();
 		levelCompleteListener.OnDisable();
 
 		if( moveAndLookSequence != null )
@@ -56,7 +50,6 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-		levelRevealedListener.response = LevelRevealedResponse;
 		levelCompleteListener.response = LevelCompleteResponse;
 		updateMethod                   = ExtensionMethods.EmptyMethod;
 	}
@@ -137,7 +130,6 @@ public class CameraController : MonoBehaviour
 		levelStartSequence = null;
 
 		updateMethod = FollowTargetMethod;
-        levelStartEvent.Raise();
 	}
 
 	private void OnReturnDefaultComplete()
