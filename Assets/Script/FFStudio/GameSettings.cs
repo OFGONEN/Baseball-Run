@@ -51,6 +51,13 @@ namespace FFStudio
 		[ BoxGroup( "Player" ), Tooltip( "Player's approach to obstacle speed" ) ] public float player_speed_approach = 5f;
 		[ BoxGroup( "Player" ), Tooltip( "Player's Catwalk status depleting speed" ) ] public float player_speed_statusDepleting = 5f;
 
+		// Ball
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching strike point" ) ] public float ball_duration_strike_point = 1f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching strike point" ) ] public AnimationCurve ball_curve_strike_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching Fly point" ) ] public float ball_duration_fly_point = 1f;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching Fly point" ) ] public AnimationCurve ball_curve_fly_point;
+
+
 		// Camera
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's target follow speed" ) ] public float camera_speed_follow = 1f;
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's movement duration" ) ] public float camera_duration_movement = 1f;
