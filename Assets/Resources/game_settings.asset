@@ -24,6 +24,10 @@ MonoBehaviour:
   input_horizontal_clamp: 17.5
   ui_world_modifier_duration: 0.75
   ui_world_announce_duration: 0.75
+  ui_world_indicator_speed: 1
+  ui_world_indicator_red: 0.25
+  ui_world_indicator_yellow: 0.5
+  ui_world_indicator_green: 1
   player_target_checkDistance: 0.1
   player_clamp_rotation: 45
   player_speed_vertical: 8
