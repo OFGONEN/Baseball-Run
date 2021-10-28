@@ -10,12 +10,10 @@ using NaughtyAttributes;
 public class Ball : MonoBehaviour
 {
 #region Fields
-    [ BoxGroup("Event Listeners" ) ]
-	public EventListenerDelegateResponse levelStartEventListener;
-    [ BoxGroup("Event Listeners" ) ]
-    public EventListenerDelegateResponse ballStrikeEventListener;
-    [ BoxGroup("Event Listeners" ) ]
-    public EventListenerDelegateResponse ballCatchEventListener;
+	[ BoxGroup("Event Listeners" ) ] public EventListenerDelegateResponse levelStartEventListener;
+    [ BoxGroup("Event Listeners" ) ] public EventListenerDelegateResponse ballStrikeEventListener;
+    [ BoxGroup("Event Listeners" ) ] public EventListenerDelegateResponse ballCatchEventListener;
+    [ BoxGroup("Event Listeners" ) ] public EventListenerDelegateResponse modifyEventListener;
 
     [ BoxGroup( "Fired Events" ) ] public GameEvent ballCatchEvent;
     [ BoxGroup( "Fired Events" ) ] public ParticleSpawnEvent particleSpawnEvent;
@@ -41,6 +39,7 @@ public class Ball : MonoBehaviour
 		levelStartEventListener.OnEnable();
 		ballStrikeEventListener.OnEnable();
 		ballCatchEventListener.OnEnable();
+		modifyEventListener.OnEnable();
 	}
 
     private void OnDisable()
@@ -48,6 +47,7 @@ public class Ball : MonoBehaviour
 		levelStartEventListener.OnDisable();
 		ballStrikeEventListener.OnDisable();
 		ballCatchEventListener.OnDisable();
+		modifyEventListener.OnDisable();
     }
 
     private void Awake()
@@ -55,6 +55,7 @@ public class Ball : MonoBehaviour
 		levelStartEventListener.response = LevelStartEvent;
 		ballStrikeEventListener.response = BallStrikeResponse;
 		ballCatchEventListener.response  = BallCatchResponse;
+		modifyEventListener.response     = ModifyEventResponse;
 
 		updateMethod = ExtensionMethods.EmptyMethod;
 	}
@@ -119,6 +120,20 @@ public class Ball : MonoBehaviour
 		var tween_catch = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point );
 		tween_catch.SetEase( Settings.ball_curve_catch_point );
 		tween_catch.OnComplete( OnBallCatchComplete );
+	}
+
+	private void ModifyEventResponse()
+	{
+		var modifyEvent = modifyEventListener.gameEvent as FloatGameEvent;
+
+		float modify = 0;
+
+		if( Mathf.Sign( modifyEvent.eventValue ) > 0 )
+			modify = modifyEvent.eventValue * GameSettings.Instance.ball_modify_cofactor_positive;
+		else 
+			modify = modifyEvent.eventValue * GameSettings.Instance.ball_modify_cofactor_negative;
+
+		ballHeightProperty.SetValue( ballHeightProperty.sharedValue + modify );
 	}
 
 	private void OnBallStrikeComplete()

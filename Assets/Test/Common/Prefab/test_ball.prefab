@@ -52,6 +52,8 @@ MonoBehaviour:
     gameEvent: {fileID: 11400000, guid: fb9cd0b71a0914b688eae2070ed457f7, type: 2}
   ballCatchEventListener:
     gameEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
+  modifyEventListener:
+    gameEvent: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
   ballCatchEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   ball: {fileID: 6143743780413829588}

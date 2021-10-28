@@ -115,6 +115,8 @@ MonoBehaviour:
   ball_height_max: 100
   ball_height_cofactor_strike: 25
   ball_height_deplete_speed: 1
+  ball_modify_cofactor_positive: 0.25
+  ball_modify_cofactor_negative: 0.15
   camera_speed_follow: 5
   camera_duration_movement: 1
   camera_duration_moveAndLook: 0.5
