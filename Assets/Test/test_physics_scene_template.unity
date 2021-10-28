@@ -249,6 +249,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73bbbc085616bbb4e96042ce0e2c73e7, type: 3}
+--- !u!1 &544342103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544342104}
+  m_Layer: 0
+  m_Name: point_spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &544342104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544342103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.87, y: 5.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1055229264}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &639429352
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,11 +448,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efa0b7965a45428988f76e1dc6a1b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shared_Strike_Point: {fileID: 11400000, guid: 002fcbb31c15d402ea7542d7dcded71e, type: 2}
-  shared_Fly_Point: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
+  shared_Initial_Point: {fileID: 11400000, guid: 002fcbb31c15d402ea7542d7dcded71e, type: 2}
+  shared_Secondary_Point: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
+  catchEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
   strikeEvent: {fileID: 11400000, guid: fb9cd0b71a0914b688eae2070ed457f7, type: 2}
   strikePoint: {fileID: 2088142487}
   flyPoint: {fileID: 1930168628}
+  catch_Spawn_Point: {fileID: 544342104}
+  catch_Target_Point: {fileID: 1547722065}
 --- !u!4 &1055229264
 Transform:
   m_ObjectHideFlags: 0
@@ -436,6 +469,8 @@ Transform:
   m_Children:
   - {fileID: 2088142487}
   - {fileID: 1930168628}
+  - {fileID: 544342104}
+  - {fileID: 1547722065}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -823,6 +858,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!1 &1547722064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547722065}
+  m_Layer: 0
+  m_Name: point_catch
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1547722065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547722064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1055229264}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571402158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00e0964f011e43a4eb3f5896f7087325, type: 3}
@@ -1054,7 +1119,7 @@ GameObject:
   m_Layer: 0
   m_Name: point_fly
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1205,7 +1270,7 @@ GameObject:
   m_Layer: 0
   m_Name: point_strike
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1443,9 +1508,9 @@ PrefabInstance:
       value: test_ball
       objectReference: {fileID: 0}
     - target: {fileID: 5965104669273669238, guid: 02dfdd66c62134e9982c70ab1d4deaa8, type: 3}
-      propertyPath: ball_initial_TargetPoint
+      propertyPath: ballCatchEvent.gameEvent
       value: 
-      objectReference: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
+      objectReference: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
     - target: {fileID: 5965104669273669239, guid: 02dfdd66c62134e9982c70ab1d4deaa8, type: 3}
       propertyPath: m_RootOrder
       value: 13

@@ -9,13 +9,16 @@ using NaughtyAttributes;
 public class Test_Ball : MonoBehaviour
 {
 #region Fields
-    [ BoxGroup( "SharedVariables" ) ] public SharedVector3 shared_Strike_Point;
-    [ BoxGroup( "SharedVariables" ) ] public SharedVector3 shared_Fly_Point;
+    [ BoxGroup( "SharedVariables" ) ] public SharedVector3 shared_Initial_Point;
+    [ BoxGroup( "SharedVariables" ) ] public SharedVector3 shared_Secondary_Point;
 
+    [ BoxGroup( "Fired Events" ) ] public GameEvent catchEvent;
     [ BoxGroup( "Fired Events" ) ] public FloatGameEvent strikeEvent;
 
     [ BoxGroup( "Setup" ) ] public Transform strikePoint;
     [ BoxGroup( "Setup" ) ] public Transform flyPoint;
+    [ BoxGroup( "Setup" ) ] public Transform catch_Spawn_Point;
+    [ BoxGroup( "Setup" ) ] public Transform catch_Target_Point;
 
 #endregion
 
@@ -29,11 +32,20 @@ public class Test_Ball : MonoBehaviour
     [ Button() ]
     public void StrikeTest()
     {
-		shared_Strike_Point.sharedValue = strikePoint.position;
-		shared_Fly_Point.sharedValue    = flyPoint.position;
+		shared_Initial_Point.sharedValue   = strikePoint.position;
+		shared_Secondary_Point.sharedValue = flyPoint.position;
 
-		strikeEvent.eventValue = 1f;
+		// strikeEvent.eventValue = 1f;
 		strikeEvent.Raise();
+	}
+
+    [ Button() ]
+    public void CatchTest()
+    {
+		shared_Initial_Point.sharedValue = catch_Spawn_Point.position;
+		shared_Secondary_Point.sharedValue = catch_Target_Point.position;
+
+		catchEvent.Raise();
 	}
 #endregion
 
