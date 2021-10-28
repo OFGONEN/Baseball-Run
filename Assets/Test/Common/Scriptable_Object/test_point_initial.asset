@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91e0b3b651e945348ace1b419e942208, type: 3}
-  m_Name: test_point_fly
+  m_Name: test_point_initial
   m_EditorClassIdentifier: 
   sharedValue: {x: 0, y: 0, z: 0}

@@ -19,9 +19,9 @@ public class Ball : MonoBehaviour
 
 
     [ BoxGroup( "Shared Variables" ) ]
-    public SharedVector3 ball_Strike_TargetPoint;
+    public SharedVector3 ball_initial_TargetPoint;
     [ BoxGroup( "Shared Variables" ) ]
-    public SharedVector3 ball_Fly_TargetPoint;
+    public SharedVector3 ball_secondary_TargetPoint;
 
 
     private GameSettings Settings => GameSettings.Instance;
@@ -59,10 +59,10 @@ public class Ball : MonoBehaviour
 
 		var sequence = DOTween.Sequence();
 		
-        var tween_strike = ball.DOMove( ball_Strike_TargetPoint.sharedValue, Settings.ball_duration_strike_point );
+        var tween_strike = ball.DOMove( ball_initial_TargetPoint.sharedValue, Settings.ball_duration_strike_point );
 		tween_strike.SetEase( Settings.ball_curve_strike_point );
 
-		var tween_fly = ball.DOMove( ball_Fly_TargetPoint.sharedValue, Settings.ball_duration_fly_point );
+		var tween_fly = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_fly_point );
 		tween_fly.SetEase( Settings.ball_curve_fly_point );
 
 		sequence.Append( tween_strike );

@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: test_ball
       objectReference: {fileID: 0}
+    - target: {fileID: 5965104669273669238, guid: 02dfdd66c62134e9982c70ab1d4deaa8, type: 3}
+      propertyPath: ball_initial_TargetPoint
+      value: 
+      objectReference: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
     - target: {fileID: 5965104669273669239, guid: 02dfdd66c62134e9982c70ab1d4deaa8, type: 3}
       propertyPath: m_RootOrder
       value: 13
