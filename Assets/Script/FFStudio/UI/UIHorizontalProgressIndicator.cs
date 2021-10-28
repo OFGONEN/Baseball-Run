@@ -20,13 +20,16 @@ namespace FFStudio
         {
 			var position             = indicator_BasePosition;
 			    position.x           = Mathf.Lerp( indicator_BasePosition.x, indicator_EndPosition.x, indicatorProgress.sharedValue );
-			    uiTransform.position = position;
+			    uiTransform.localPosition = position;
 		}
 		
 		protected override void GetIndicatorPositions()
         {
             indicator_BasePosition = ( indicatingParentWorldPos[ 0 ] + indicatingParentWorldPos[ 1 ] ) / 2;
             indicator_EndPosition  = ( indicatingParentWorldPos[ 2 ] + indicatingParentWorldPos[ 3 ] ) / 2;
+
+			indicator_BasePosition = indicatingParent.InverseTransformPoint( indicator_BasePosition );
+			indicator_EndPosition  = indicatingParent.InverseTransformPoint( indicator_EndPosition );
 
 			var width            = indicator_EndPosition.x - indicator_BasePosition.x;
 			var horizontalOffset = width * offsetPercentage;

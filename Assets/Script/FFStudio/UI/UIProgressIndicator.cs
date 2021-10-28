@@ -16,10 +16,10 @@ namespace FFStudio
 		protected Vector3[] indicatingParentWorldPos = new Vector3[ 4 ];
 		protected Vector3 indicator_BasePosition;
 		protected Vector3 indicator_EndPosition;
+		protected RectTransform indicatingParent;
 #endregion
 
 #region Fields (Private)
-		private RectTransform indicatingParent;
 #endregion
 
 #region Unity API
