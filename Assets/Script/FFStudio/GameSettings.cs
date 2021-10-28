@@ -56,6 +56,8 @@ namespace FFStudio
 		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching strike point" ) ] public AnimationCurve ball_curve_strike_point;
 		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching Fly point" ) ] public float ball_duration_fly_point = 1f;
 		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching Fly point" ) ] public AnimationCurve ball_curve_fly_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel duration for reaching Catch point" ) ] public float ball_duration_catch_point;
+		[ BoxGroup( "Ball" ), Tooltip( "Ball travel curve for reaching Catch point" ) ] public AnimationCurve ball_curve_catch_point;
 
 
 		// Camera
