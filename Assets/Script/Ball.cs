@@ -11,21 +11,25 @@ public class Ball : MonoBehaviour
 {
 #region Fields
     [ BoxGroup("Event Listeners" ) ]
-    public EventListenerDelegateResponse ballStrikeEvent;
-    public EventListenerDelegateResponse ballCatchEvent;
+	public EventListenerDelegateResponse levelStartEventListener;
+    [ BoxGroup("Event Listeners" ) ]
+    public EventListenerDelegateResponse ballStrikeEventListener;
+    [ BoxGroup("Event Listeners" ) ]
+    public EventListenerDelegateResponse ballCatchEventListener;
 
+    [ BoxGroup( "Fired Events" ) ] public GameEvent ballCatchEvent;
     [ BoxGroup( "Fired Events" ) ] public ParticleSpawnEvent particleSpawnEvent;
 
     [ BoxGroup( "Setup" ) ] public Transform ball;
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
 
-
-    [ BoxGroup( "Shared Variables" ) ]
-    public SharedVector3 ball_initial_TargetPoint;
-    [ BoxGroup( "Shared Variables" ) ]
-    public SharedVector3 ball_secondary_TargetPoint;
+	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeightProperty;
+    [ BoxGroup( "Shared Variables" ) ] public SharedVector3 ball_initial_TargetPoint;
+    [ BoxGroup( "Shared Variables" ) ] public SharedVector3 ball_secondary_TargetPoint;
 
     private GameSettings Settings => GameSettings.Instance;
+
+	private UnityMessage updateMethod;
 #endregion
 
 #region Properties
@@ -34,20 +38,30 @@ public class Ball : MonoBehaviour
 #region Unity API
     private void OnEnable()
     {
-		ballStrikeEvent.OnEnable();
-		ballCatchEvent.OnEnable();
+		levelStartEventListener.OnEnable();
+		ballStrikeEventListener.OnEnable();
+		ballCatchEventListener.OnEnable();
 	}
 
     private void OnDisable()
     {
-		ballStrikeEvent.OnDisable();
-		ballCatchEvent.OnDisable();
+		levelStartEventListener.OnDisable();
+		ballStrikeEventListener.OnDisable();
+		ballCatchEventListener.OnDisable();
     }
 
     private void Awake()
     {
-		ballStrikeEvent.response = BallStrikeResponse;
-		ballCatchEvent.response  = BallCatchResponse;
+		levelStartEventListener.response = LevelStartEvent;
+		ballStrikeEventListener.response = BallStrikeResponse;
+		ballCatchEventListener.response  = BallCatchResponse;
+
+		updateMethod = ExtensionMethods.EmptyMethod;
+	}
+
+	private void Update()
+	{
+		updateMethod();
 	}
 #endregion
 
@@ -55,10 +69,26 @@ public class Ball : MonoBehaviour
 #endregion
 
 #region Implementation
+	private void BallDepleteMethod()
+	{
+		var height = ballHeightProperty.sharedValue + -1f * Settings.ball_height_deplete_speed * Time.deltaTime;
+
+		if( height <= 0 )
+		{
+			height = 0;
+			updateMethod = ExtensionMethods.EmptyMethod;
+			ballCatchEvent.Raise();
+		}
+
+		ballHeightProperty.SetValue( height );
+	}
+
     private void BallStrikeResponse()
     {
-		ball.gameObject.SetActive( true );
+		var strikeEvent = ballStrikeEventListener.gameEvent as FloatGameEvent;
+		ballHeightProperty.SetValue( strikeEvent.eventValue * Settings.ball_height_cofactor_strike );
 
+		ball.gameObject.SetActive( true );
 		ball.position = ballSpawnPoint.position;
 
 		var sequence = DOTween.Sequence();
@@ -85,21 +115,25 @@ public class Ball : MonoBehaviour
 		var tween_catch = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point );
 		tween_catch.SetEase( Settings.ball_curve_catch_point );
 		tween_catch.OnComplete( OnBallCatchComplete );
-
-		//
 	}
 
 	private void OnBallStrikeComplete()
 	{
-		ballStrikeEvent.response = ExtensionMethods.EmptyMethod;
+		ballStrikeEventListener.response = ExtensionMethods.EmptyMethod;
 
 		ball.gameObject.SetActive( false );
 	}
 
 	private void OnBallCatchComplete()
 	{
-		ballCatchEvent.response = ExtensionMethods.EmptyMethod;
+		ballCatchEventListener.response = ExtensionMethods.EmptyMethod;
 		ball.gameObject.SetActive( false );
+	}
+
+	private void LevelStartEvent()
+	{
+		updateMethod = BallDepleteMethod;
+		// Modify Event response set
 	}
 #endregion
 

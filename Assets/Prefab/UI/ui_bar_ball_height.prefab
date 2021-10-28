@@ -93,7 +93,7 @@ MonoBehaviour:
   destinationTransform: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   startScale: {x: 0, y: 0, z: 0}
-  progressProperty: {fileID: 11400000, guid: 62c04556759734626b78b5a319090f75, type: 2}
+  progressProperty: {fileID: 11400000, guid: c43720f258a9c411f8608df893085c74, type: 2}
   fillingImage: {fileID: 6843007919667642009}
   levelStartedListener:
     gameEvent: {fileID: 11400000, guid: efef06bf257ee27438d6c2aab4936226, type: 2}

@@ -112,6 +112,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ball_height_max: 100
+  ball_height_cofactor_strike: 25
+  ball_height_deplete_speed: 1
   camera_speed_follow: 5
   camera_duration_movement: 1
   camera_duration_moveAndLook: 0.5

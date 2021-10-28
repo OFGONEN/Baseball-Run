@@ -46,13 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27dd256bb680409cb58d9e5cae445bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballStrikeEvent:
+  levelStartEventListener:
+    gameEvent: {fileID: 11400000, guid: efef06bf257ee27438d6c2aab4936226, type: 2}
+  ballStrikeEventListener:
     gameEvent: {fileID: 11400000, guid: fb9cd0b71a0914b688eae2070ed457f7, type: 2}
-  ballCatchEvent:
+  ballCatchEventListener:
     gameEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
+  ballCatchEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   ball: {fileID: 6143743780413829588}
   ballSpawnPoint: {fileID: 5965104669290220525}
+  ballHeightProperty: {fileID: 11400000, guid: c43720f258a9c411f8608df893085c74, type: 2}
   ball_initial_TargetPoint: {fileID: 11400000, guid: 002fcbb31c15d402ea7542d7dcded71e, type: 2}
   ball_secondary_TargetPoint: {fileID: 11400000, guid: f4a6255b0d4fd4c30b35eedac7c63c70, type: 2}
 --- !u!1 &5965104669290220526
