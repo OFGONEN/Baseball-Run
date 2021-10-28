@@ -76,7 +76,6 @@ public class Ball : MonoBehaviour
 		if( height <= 0 )
 		{
 			height = 0;
-			updateMethod = ExtensionMethods.EmptyMethod;
 			ballCatchEvent.Raise();
 		}
 
@@ -111,7 +110,8 @@ public class Ball : MonoBehaviour
 
 	private void BallCatchResponse()
 	{
-		FFLogger.Log( "Ball Catch" );
+		// Level is ended there is no need to handle ball height anymore
+		updateMethod = ExtensionMethods.EmptyMethod;
 
 		ball.position = ball_initial_TargetPoint.sharedValue;
 		ball.gameObject.SetActive( true );
