@@ -17,17 +17,11 @@ public class PlayerController : MonoBehaviour
 	public EventListenerDelegateResponse catwalkEventListener;
 	public EventListenerDelegateResponse playerStrikeListener;
 
-
-	[ Header( "Fired Events" ) ]
-	public GameEvent levelCompleteEvent;
-	public GameEvent levelFailEvent;
-
 	[ Header( "Shared Variables" ) ]
     public SharedFloatProperty inputDirectionProperty;
 	public SharedReferenceProperty startWaypointReference;
 	public SharedFloatProperty playerStatusRatioProperty;
 	public Status_Property playerStatusProperty;
-
 
 	[ BoxGroup( "Setup" ) ] public Transform modelTransform;
 	[ BoxGroup( "Setup" ) ] public Transform model_baseball_bat;
@@ -136,8 +130,6 @@ target_point_initial.sharedValue   = target_point_strike.position;
     {
 		startApproachMethod = StartApproachWaypoint;
 
-		animatorGroup.SetBool( "walking", true );
-
 		if( currentWaypoint != null )
 			updateMethod = ApproachWaypointMethod;
 	}
@@ -145,8 +137,6 @@ target_point_initial.sharedValue   = target_point_strike.position;
     public void StartApproach_DepletingWaypoint()
     {
 		startApproachMethod = StartApproach_DepletingWaypoint;
-
-		animatorGroup.SetBool( "walking", !catwalking );
 
         if( currentWaypoint != null )
 			updateMethod = Approach_DepletingWaypointMethod;
@@ -186,9 +176,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 		var transform = ModifyStatus( modifyAmount );
 
 		if( statusPoint_Current < 0 )
-		{
-			LevelComplete( levelFailEvent );
-		}
+			LevelComplete();
 		else if ( transform ) 
 		{
 			if( modifyAmount > 0 )
@@ -204,10 +192,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		vertical_speed = GameSettings.Instance.player_speed_catwalking;
 
-		animatorGroup.SetBool( "walking", false );
-
-		animatorGroup.SetBool( "catwalking", true );
-		animatorGroup.SetWeightOfLayer( 1, 1 );
+		animatorGroup.SetBool( "slide", true );
 	}
 
     private void ApproachWaypointMethod()
@@ -233,10 +218,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 				updateMethod = ExtensionMethods.EmptyMethod;
 
 				if( catwalking )
-				{
-					animatorGroup.SetBool( "victory", true );
-					LevelComplete( levelCompleteEvent );
-				}
+					animatorGroup.SetBool( "slide", false );
 
 				return;
 			}
@@ -273,13 +255,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		if( statusPoint_Current < 0 )
 		{
-			if( catwalking )
-			{
-				animatorGroup.SetBool( "victory", true );
-				LevelComplete( levelCompleteEvent );
-			}
-			else 
-				LevelComplete( levelFailEvent );
+			LevelComplete();
 		}
 		else if ( !catwalking && transform ) 
 		{
@@ -331,9 +307,9 @@ target_point_initial.sharedValue   = target_point_strike.position;
 		playerStatusProperty.SetValue( currentStatus );
 
 		//TODO:(ofg) We can player different animation when transforming UP
-		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "transform_positive", true);
-		animatorGroup.SetTrigger( "transform" );
+		// animatorGroup.SetBool( "walking", false );
+		// animatorGroup.SetBool( "transform_positive", true);
+		// animatorGroup.SetTrigger( "transform" );
 
 		particleSystem_transformUp.Play();
 	}
@@ -348,21 +324,16 @@ target_point_initial.sharedValue   = target_point_strike.position;
 		playerStatusProperty.SetValue( currentStatus );
 
         //TODO:(ofg) We can player different animation when transforming DOWN
-        animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "transform_positive", false);
-		animatorGroup.SetTrigger( "transform" );
+        // animatorGroup.SetBool( "walking", false );
+		// animatorGroup.SetBool( "transform_positive", false);
+		// animatorGroup.SetTrigger( "transform" );
 
 		particleSystem_transformDown.Play();
 	}
 
-	private void LevelComplete( GameEvent completeEvent )
+	private void LevelComplete()
 	{
-		animatorGroup.SetWeightOfLayer( 1, 0 );
-
-		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetTrigger( "complete" );
-
-		completeEvent.Raise();
+		animatorGroup.SetTrigger( "catch" );
 		updateMethod = ExtensionMethods.EmptyMethod;
 	}
 #endregion
