@@ -11,6 +11,7 @@ namespace FFStudio
 		public StringGameEvent particleStoppedEvent;
 		public string alias;
 		[ HideInInspector ] public Transform parent;
+		[ HideInInspector ] public RunTimePool< ParticleEffect > runTimePool;
 
 		// Private Fields \\
 		private ParticleSystem particles;
@@ -35,6 +36,8 @@ namespace FFStudio
 			transform.SetParent( parent );
 			gameObject.SetActive( false );
 			particleStoppedEvent.Raise();
+
+			runTimePool.Stack.Push( this );
 		}
 #endregion
 

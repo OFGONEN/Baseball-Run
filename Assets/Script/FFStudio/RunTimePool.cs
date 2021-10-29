@@ -26,6 +26,7 @@ namespace FFStudio
 				entity.transform.SetParent( parent );
 				entity.gameObject.SetActive( active );
 				entity.parent = parent;
+				entity.runTimePool = this as RunTimePool< ParticleEffect >;
 				stack.Push( entity );
 			}
 		}
