@@ -116,13 +116,17 @@ public class Ball : MonoBehaviour
 		// Level is ended there is no need to handle ball height anymore
 		updateMethod = ExtensionMethods.EmptyMethod;
 
-		ball.position = ball_initial_TargetPoint.sharedValue;
-		ball.gameObject.SetActive( true );
+		var sequence = DOTween.Sequence();
 
-		var tween_catch = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point );
-		tween_catch.SetDelay( Settings.ball_delay_catch_point );
-		tween_catch.SetEase( Settings.ball_curve_catch_point );
-		tween_catch.OnComplete( OnBallCatchComplete );
+		sequence.AppendInterval( Settings.ball_delay_catch_point );
+		sequence.AppendCallback( () =>
+		{
+			ball.position = ball_initial_TargetPoint.sharedValue;
+			ball.gameObject.SetActive( true );
+		} );
+
+		sequence.Append( ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point ).SetEase( Settings.ball_curve_catch_point ) );
+		sequence.OnComplete( OnBallCatchComplete );
 	}
 
 	private void ModifyEventResponse()

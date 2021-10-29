@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 	public EventListenerDelegateResponse modifierEventListener;
 	public EventListenerDelegateResponse catwalkEventListener;
 	public EventListenerDelegateResponse playerStrikeListener;
+	public EventListenerDelegateResponse ballCatchListener;
+
+	[ Header( "Fired Events" ) ]
+	public GameEvent ballCatchEvent;
 
 	[ Header( "Shared Variables" ) ]
     public SharedFloatProperty inputDirectionProperty;
@@ -24,7 +28,7 @@ public class PlayerController : MonoBehaviour
 	public Status_Property playerStatusProperty;
 
 	[ BoxGroup( "Setup" ) ] public Transform modelTransform;
-	[ BoxGroup( "Setup" ) ] public Transform model_baseball_bat;
+	[ BoxGroup( "Setup" ) ] public MeshRenderer model_baseball_bat;
     [ BoxGroup( "Setup" ) ] public AnimatorGroup animatorGroup;
     [ BoxGroup( "Setup" ) ] public ModelRenderer[] modelRenderers;
     [ BoxGroup( "Setup" ) ] public CameraController cameraController;
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
 		modifierEventListener.OnEnable();
 		catwalkEventListener.OnEnable();
 		playerStrikeListener.OnEnable();
+		ballCatchListener.OnEnable();
 	}
 
     private void OnDisable()
@@ -82,6 +87,7 @@ public class PlayerController : MonoBehaviour
 		modifierEventListener.OnDisable();
 		catwalkEventListener.OnDisable();
 		playerStrikeListener.OnDisable();
+		ballCatchListener.OnDisable();
     }
     
     private void Awake()
@@ -92,6 +98,7 @@ public class PlayerController : MonoBehaviour
 		updateMethod                   = ExtensionMethods.EmptyMethod;
 		catwalkEventListener.response  = CatwalkEventResponse;
 		playerStrikeListener.response  = PlayerStrikeResponse;
+		ballCatchListener.response 	   = LevelComplete;
 
 		vertical_speed = GameSettings.Instance.player_speed_vertical;
 
@@ -159,7 +166,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
     private void LevelStartResponse()
     {
-		model_baseball_bat.gameObject.SetActive( false );
+		model_baseball_bat.enabled = false;
 
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
@@ -176,7 +183,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 		var transform = ModifyStatus( modifyAmount );
 
 		if( statusPoint_Current < 0 )
-			LevelComplete();
+			ballCatchEvent.Raise();
 		else if ( transform ) 
 		{
 			if( modifyAmount > 0 )
@@ -218,7 +225,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 				updateMethod = ExtensionMethods.EmptyMethod;
 
 				if( catwalking )
-					animatorGroup.SetBool( "slide", false );
+					ballCatchEvent.Raise();
 
 				return;
 			}
@@ -255,7 +262,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		if( statusPoint_Current < 0 )
 		{
-			LevelComplete();
+			ballCatchEvent.Raise();
 		}
 		else if ( !catwalking && transform ) 
 		{
@@ -333,15 +340,20 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 	private void LevelComplete()
 	{
-		animatorGroup.SetTrigger( "catch" );
 		updateMethod = ExtensionMethods.EmptyMethod;
+
+		target_point_initial.sharedValue   = target_point_spawn.position;
+		target_point_secondary.sharedValue = target_point_catch.position;
+
+		animatorGroup.SetBool( "slide", false );
+		animatorGroup.SetTrigger( "catch" );
 	}
 #endregion
 
 #region Editor Only
 #if UNITY_EDITOR
 
-	[ Button() ]
+	[ Button]
 	public void StartPlayer()
 	{
 		LevelStartResponse();

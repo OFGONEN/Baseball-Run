@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5979564673162777985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 5, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3181949308013251378}
@@ -737,14 +737,15 @@ MonoBehaviour:
     gameEvent: {fileID: 11400000, guid: 38530e60d192c9b4182cc5d8d3bcde96, type: 2}
   playerStrikeListener:
     gameEvent: {fileID: 11400000, guid: e3d3aac6210234c6fae85b46d004dbff, type: 2}
-  levelCompleteEvent: {fileID: 11400000, guid: 28d976b368abc004a924d98b1751a17d, type: 2}
-  levelFailEvent: {fileID: 11400000, guid: ec850936269bc2e47b26cfebd8bdad97, type: 2}
+  ballCatchListener:
+    gameEvent: {fileID: 11400000, guid: 6d5e68777e00f423bb9c951bfb1ad53a, type: 2}
+  ballCatchEvent: {fileID: 11400000, guid: 6d5e68777e00f423bb9c951bfb1ad53a, type: 2}
   inputDirectionProperty: {fileID: 11400000, guid: 10013a92544522a46850caab4dc76535, type: 2}
   startWaypointReference: {fileID: 11400000, guid: e48fa8568b0c6b94fb5b37baaf07d5b8, type: 2}
   playerStatusRatioProperty: {fileID: 11400000, guid: 249ef2067233f854eadca487d9fbdf1f, type: 2}
   playerStatusProperty: {fileID: 11400000, guid: 839cbad99c40a6543822999b9eaafc65, type: 2}
   modelTransform: {fileID: 3181949308013251378}
-  model_baseball_bat: {fileID: 543450652828739442}
+  model_baseball_bat: {fileID: 1711813855972187165}
   animatorGroup:
     animators:
     - {fileID: 7445500973588986267}
@@ -790,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6614455201431764624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.156, y: 2.392, z: 0.243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3181949308013251378}
@@ -891,9 +892,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a66e8027db16f4a7689f1835bfacf5e2, type: 3}
---- !u!4 &543450652828739442 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a66e8027db16f4a7689f1835bfacf5e2, type: 3}
+--- !u!23 &1711813855972187165 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: a66e8027db16f4a7689f1835bfacf5e2, type: 3}
   m_PrefabInstance: {fileID: 879935641}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &378374126686937217
