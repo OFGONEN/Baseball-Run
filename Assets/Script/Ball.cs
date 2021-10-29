@@ -90,7 +90,7 @@ public class Ball : MonoBehaviour
 		var strikeEvent = ballStrikeEventListener.gameEvent as FloatGameEvent;
 		ballHeightProperty.SetValue( strikeEvent.eventValue * Settings.ball_height_cofactor_strike );
 
-		ball.gameObject.SetActive( true );
+		// ball.gameObject.SetActive( true );
 		ball.position = ballSpawnPoint.position;
 
 		var sequence = DOTween.Sequence();
@@ -101,6 +101,8 @@ public class Ball : MonoBehaviour
 		var tween_fly = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_fly_point );
 		tween_fly.SetEase( Settings.ball_curve_fly_point );
 
+		sequence.AppendInterval( Settings.ball_delay_strike_point );
+		sequence.AppendCallback( () => ball.gameObject.SetActive( true ) );
 		sequence.Append( tween_strike );
 		sequence.Append( tween_fly );
 		sequence.OnComplete( OnBallStrikeComplete );
@@ -118,6 +120,7 @@ public class Ball : MonoBehaviour
 		ball.gameObject.SetActive( true );
 
 		var tween_catch = ball.DOMove( ball_secondary_TargetPoint.sharedValue, Settings.ball_duration_catch_point );
+		tween_catch.SetDelay( Settings.ball_delay_catch_point );
 		tween_catch.SetEase( Settings.ball_curve_catch_point );
 		tween_catch.OnComplete( OnBallCatchComplete );
 	}

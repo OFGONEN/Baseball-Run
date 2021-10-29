@@ -175,7 +175,6 @@ target_point_initial.sharedValue   = target_point_strike.position;
 		currentWaypoint.PlayerEntered( this );
 		transform.forward = currentWaypoint.transform.forward;
 
-
         statusPoint_Floor = 0;
 		statusPoint_Ceil = currentStatus.status_Point;
 	}
