@@ -95,6 +95,7 @@ public class UIStatusAnnounce : UIText
 
     private void LevelStartResponse()
     {
+		levelStartListener.response = ExtensionMethods.EmptyMethod;
 		playerStatusProperty.changeEvent += OnPlayerStatusChange;
 	}
 #endregion
