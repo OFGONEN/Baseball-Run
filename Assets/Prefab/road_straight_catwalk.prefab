@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_EnteredEvent: {fileID: 11400000, guid: 38530e60d192c9b4182cc5d8d3bcde96, type: 2}
-  player_ExitedEvent: {fileID: 11400000, guid: 28d976b368abc004a924d98b1751a17d, type: 2}
+  player_ExitedEvent: {fileID: 0}
   nextWaypoint: {fileID: 0}
   targetPoint: {x: 0, y: 0, z: 30}
   wide: 5

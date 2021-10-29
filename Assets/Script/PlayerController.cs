@@ -15,10 +15,11 @@ public class PlayerController : MonoBehaviour
     public EventListenerDelegateResponse levelStartListener;
 	public EventListenerDelegateResponse modifierEventListener;
 	public EventListenerDelegateResponse catwalkEventListener;
+	public EventListenerDelegateResponse playerStrikeListener;
+	public EventListenerDelegateResponse ballCatchListener;
 
 	[ Header( "Fired Events" ) ]
-	public GameEvent levelCompleteEvent;
-	public GameEvent levelFailEvent;
+	public GameEvent ballCatchEvent;
 
 	[ Header( "Shared Variables" ) ]
     public SharedFloatProperty inputDirectionProperty;
@@ -26,15 +27,24 @@ public class PlayerController : MonoBehaviour
 	public SharedFloatProperty playerStatusRatioProperty;
 	public Status_Property playerStatusProperty;
 
-
 	[ BoxGroup( "Setup" ) ] public Transform modelTransform;
+	[ BoxGroup( "Setup" ) ] public MeshRenderer model_baseball_bat;
     [ BoxGroup( "Setup" ) ] public AnimatorGroup animatorGroup;
     [ BoxGroup( "Setup" ) ] public ModelRenderer[] modelRenderers;
     [ BoxGroup( "Setup" ) ] public CameraController cameraController;
     [ BoxGroup( "Setup" ) ] public Status currentStatus;
-	
+
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformUp;
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformDown;
+
+
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_strike;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_fly;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_spawn;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_catch;
+    [ BoxGroup( "Target Points" ) ] public SharedVector3 target_point_initial;
+    [ BoxGroup( "Target Points" ) ] public SharedVector3 target_point_secondary;
+
 
 	// Private Fields \\
 	private Waypoint currentWaypoint;
@@ -67,6 +77,8 @@ public class PlayerController : MonoBehaviour
 		levelStartListener.OnEnable();
 		modifierEventListener.OnEnable();
 		catwalkEventListener.OnEnable();
+		playerStrikeListener.OnEnable();
+		ballCatchListener.OnEnable();
 	}
 
     private void OnDisable()
@@ -74,6 +86,8 @@ public class PlayerController : MonoBehaviour
 		levelStartListener.OnDisable();
 		modifierEventListener.OnDisable();
 		catwalkEventListener.OnDisable();
+		playerStrikeListener.OnDisable();
+		ballCatchListener.OnDisable();
     }
     
     private void Awake()
@@ -83,6 +97,8 @@ public class PlayerController : MonoBehaviour
 		modifierEventListener.response = ModifierEventResponse;
 		updateMethod                   = ExtensionMethods.EmptyMethod;
 		catwalkEventListener.response  = CatwalkEventResponse;
+		playerStrikeListener.response  = PlayerStrikeResponse;
+		ballCatchListener.response 	   = LevelComplete;
 
 		vertical_speed = GameSettings.Instance.player_speed_vertical;
 
@@ -105,6 +121,9 @@ public class PlayerController : MonoBehaviour
 
 		// Toogle on the current status model renderer
 		ToggleRenderer( currentStatus.status_Name, true );
+
+target_point_initial.sharedValue   = target_point_strike.position;
+		target_point_secondary.sharedValue = target_point_fly.position;
 	}
 
     private void Update()
@@ -118,8 +137,6 @@ public class PlayerController : MonoBehaviour
     {
 		startApproachMethod = StartApproachWaypoint;
 
-		animatorGroup.SetBool( "walking", true );
-
 		if( currentWaypoint != null )
 			updateMethod = ApproachWaypointMethod;
 	}
@@ -127,8 +144,6 @@ public class PlayerController : MonoBehaviour
     public void StartApproach_DepletingWaypoint()
     {
 		startApproachMethod = StartApproach_DepletingWaypoint;
-
-		animatorGroup.SetBool( "walking", !catwalking );
 
         if( currentWaypoint != null )
 			updateMethod = Approach_DepletingWaypointMethod;
@@ -144,12 +159,18 @@ public class PlayerController : MonoBehaviour
 		renderer.ToggleRenderer( value );
 	}
 
+	private void PlayerStrikeResponse()
+	{
+		animatorGroup.SetTrigger( "strike" );
+	}
+
     private void LevelStartResponse()
     {
+		model_baseball_bat.enabled = false;
+
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
 		transform.forward = currentWaypoint.transform.forward;
-
 
         statusPoint_Floor = 0;
 		statusPoint_Ceil = currentStatus.status_Point;
@@ -162,9 +183,7 @@ public class PlayerController : MonoBehaviour
 		var transform = ModifyStatus( modifyAmount );
 
 		if( statusPoint_Current < 0 )
-		{
-			LevelComplete( levelFailEvent );
-		}
+			ballCatchEvent.Raise();
 		else if ( transform ) 
 		{
 			if( modifyAmount > 0 )
@@ -180,10 +199,7 @@ public class PlayerController : MonoBehaviour
 
 		vertical_speed = GameSettings.Instance.player_speed_catwalking;
 
-		animatorGroup.SetBool( "walking", false );
-
-		animatorGroup.SetBool( "catwalking", true );
-		animatorGroup.SetWeightOfLayer( 1, 1 );
+		animatorGroup.SetBool( "slide", true );
 	}
 
     private void ApproachWaypointMethod()
@@ -209,10 +225,7 @@ public class PlayerController : MonoBehaviour
 				updateMethod = ExtensionMethods.EmptyMethod;
 
 				if( catwalking )
-				{
-					animatorGroup.SetBool( "victory", true );
-					LevelComplete( levelCompleteEvent );
-				}
+					ballCatchEvent.Raise();
 
 				return;
 			}
@@ -249,13 +262,7 @@ public class PlayerController : MonoBehaviour
 
 		if( statusPoint_Current < 0 )
 		{
-			if( catwalking )
-			{
-				animatorGroup.SetBool( "victory", true );
-				LevelComplete( levelCompleteEvent );
-			}
-			else 
-				LevelComplete( levelFailEvent );
+			ballCatchEvent.Raise();
 		}
 		else if ( !catwalking && transform ) 
 		{
@@ -307,9 +314,9 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
 		//TODO:(ofg) We can player different animation when transforming UP
-		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "transform_positive", true);
-		animatorGroup.SetTrigger( "transform" );
+		// animatorGroup.SetBool( "walking", false );
+		// animatorGroup.SetBool( "transform_positive", true);
+		// animatorGroup.SetTrigger( "transform" );
 
 		particleSystem_transformUp.Play();
 	}
@@ -324,29 +331,29 @@ public class PlayerController : MonoBehaviour
 		playerStatusProperty.SetValue( currentStatus );
 
         //TODO:(ofg) We can player different animation when transforming DOWN
-        animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetBool( "transform_positive", false);
-		animatorGroup.SetTrigger( "transform" );
+        // animatorGroup.SetBool( "walking", false );
+		// animatorGroup.SetBool( "transform_positive", false);
+		// animatorGroup.SetTrigger( "transform" );
 
 		particleSystem_transformDown.Play();
 	}
 
-	private void LevelComplete( GameEvent completeEvent )
+	private void LevelComplete()
 	{
-		animatorGroup.SetWeightOfLayer( 1, 0 );
-
-		animatorGroup.SetBool( "walking", false );
-		animatorGroup.SetTrigger( "complete" );
-
-		completeEvent.Raise();
 		updateMethod = ExtensionMethods.EmptyMethod;
+
+		target_point_initial.sharedValue   = target_point_spawn.position;
+		target_point_secondary.sharedValue = target_point_catch.position;
+
+		animatorGroup.SetBool( "slide", false );
+		animatorGroup.SetTrigger( "catch" );
 	}
 #endregion
 
 #region Editor Only
 #if UNITY_EDITOR
 
-	[ Button() ]
+	[ Button]
 	public void StartPlayer()
 	{
 		LevelStartResponse();

@@ -37,7 +37,8 @@ MonoBehaviour:
   player_speed_turning: 10
   player_speed_approach: 5
   player_speed_statusDepleting: 21
-  ball_duration_strike_point: 1
+  ball_delay_strike_point: 0.75
+  ball_duration_strike_point: 0.25
   ball_curve_strike_point:
     serializedVersion: 2
     m_Curve:
@@ -62,7 +63,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ball_duration_fly_point: 1
+  ball_duration_fly_point: 0.25
   ball_curve_fly_point:
     serializedVersion: 2
     m_Curve:
@@ -87,7 +88,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ball_duration_catch_point: 1
+  ball_delay_catch_point: 1
+  ball_duration_catch_point: 0.15
   ball_curve_catch_point:
     serializedVersion: 2
     m_Curve:

@@ -93,12 +93,12 @@ MonoBehaviour:
   destinationTransform: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   startScale: {x: 0, y: 0, z: 0}
-  progressProperty: {fileID: 11400000, guid: c43720f258a9c411f8608df893085c74, type: 2}
+  progressProperty: {fileID: 11400000, guid: a9180d554ecf04bd3bd71644ac799474, type: 2}
   fillingImage: {fileID: 6843007919667642009}
   levelStartedListener:
     gameEvent: {fileID: 11400000, guid: efef06bf257ee27438d6c2aab4936226, type: 2}
   ballCatchListener:
-    gameEvent: {fileID: 11400000, guid: 8592b59963be44277a877452b954c168, type: 2}
+    gameEvent: {fileID: 11400000, guid: 6d5e68777e00f423bb9c951bfb1ad53a, type: 2}
 --- !u!1 &6843007919667641703
 GameObject:
   m_ObjectHideFlags: 0
