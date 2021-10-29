@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public EventListenerDelegateResponse levelStartListener;
 	public EventListenerDelegateResponse modifierEventListener;
 	public EventListenerDelegateResponse catwalkEventListener;
+	public EventListenerDelegateResponse playerStrikeListener;
+
 
 	[ Header( "Fired Events" ) ]
 	public GameEvent levelCompleteEvent;
@@ -28,13 +30,23 @@ public class PlayerController : MonoBehaviour
 
 
 	[ BoxGroup( "Setup" ) ] public Transform modelTransform;
+	[ BoxGroup( "Setup" ) ] public Transform model_baseball_bat;
     [ BoxGroup( "Setup" ) ] public AnimatorGroup animatorGroup;
     [ BoxGroup( "Setup" ) ] public ModelRenderer[] modelRenderers;
     [ BoxGroup( "Setup" ) ] public CameraController cameraController;
     [ BoxGroup( "Setup" ) ] public Status currentStatus;
-	
+
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformUp;
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformDown;
+
+
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_strike;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_fly;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_spawn;
+    [ BoxGroup( "Target Points" ) ] public Transform target_point_catch;
+    [ BoxGroup( "Target Points" ) ] public SharedVector3 target_point_initial;
+    [ BoxGroup( "Target Points" ) ] public SharedVector3 target_point_secondary;
+
 
 	// Private Fields \\
 	private Waypoint currentWaypoint;
@@ -67,6 +79,7 @@ public class PlayerController : MonoBehaviour
 		levelStartListener.OnEnable();
 		modifierEventListener.OnEnable();
 		catwalkEventListener.OnEnable();
+		playerStrikeListener.OnEnable();
 	}
 
     private void OnDisable()
@@ -74,6 +87,7 @@ public class PlayerController : MonoBehaviour
 		levelStartListener.OnDisable();
 		modifierEventListener.OnDisable();
 		catwalkEventListener.OnDisable();
+		playerStrikeListener.OnDisable();
     }
     
     private void Awake()
@@ -83,6 +97,7 @@ public class PlayerController : MonoBehaviour
 		modifierEventListener.response = ModifierEventResponse;
 		updateMethod                   = ExtensionMethods.EmptyMethod;
 		catwalkEventListener.response  = CatwalkEventResponse;
+		playerStrikeListener.response  = PlayerStrikeResponse;
 
 		vertical_speed = GameSettings.Instance.player_speed_vertical;
 
@@ -105,6 +120,10 @@ public class PlayerController : MonoBehaviour
 
 		// Toogle on the current status model renderer
 		ToggleRenderer( currentStatus.status_Name, true );
+
+		// Set Initial Point for player to strike
+		target_point_initial.sharedValue   = target_point_strike.position;
+		target_point_secondary.sharedValue = target_point_fly.position;
 	}
 
     private void Update()
@@ -144,8 +163,14 @@ public class PlayerController : MonoBehaviour
 		renderer.ToggleRenderer( value );
 	}
 
+	private void PlayerStrikeResponse()
+	{
+		animatorGroup.SetTrigger( "strike" );
+	}
+
     private void LevelStartResponse()
     {
+
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
 		transform.forward = currentWaypoint.transform.forward;

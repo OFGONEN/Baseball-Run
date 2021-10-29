@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954743707694151917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3181949308013251378}
@@ -573,7 +573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4309999953663864738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.691, y: 0.963, z: 0.564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3181949308013251378}
@@ -735,6 +735,8 @@ MonoBehaviour:
     gameEvent: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
   catwalkEventListener:
     gameEvent: {fileID: 11400000, guid: 38530e60d192c9b4182cc5d8d3bcde96, type: 2}
+  playerStrikeListener:
+    gameEvent: {fileID: 11400000, guid: e3d3aac6210234c6fae85b46d004dbff, type: 2}
   levelCompleteEvent: {fileID: 11400000, guid: 28d976b368abc004a924d98b1751a17d, type: 2}
   levelFailEvent: {fileID: 11400000, guid: ec850936269bc2e47b26cfebd8bdad97, type: 2}
   inputDirectionProperty: {fileID: 11400000, guid: 10013a92544522a46850caab4dc76535, type: 2}
@@ -742,6 +744,7 @@ MonoBehaviour:
   playerStatusRatioProperty: {fileID: 11400000, guid: 249ef2067233f854eadca487d9fbdf1f, type: 2}
   playerStatusProperty: {fileID: 11400000, guid: 839cbad99c40a6543822999b9eaafc65, type: 2}
   modelTransform: {fileID: 3181949308013251378}
+  model_baseball_bat: {fileID: 0}
   animatorGroup:
     animators:
     - {fileID: 7445500973588986267}
@@ -757,6 +760,12 @@ MonoBehaviour:
   currentStatus: {fileID: 11400000, guid: 2e6acfcfa457bb3469418da1f3a92f0c, type: 2}
   particleSystem_transformUp: {fileID: 5432064833605094242}
   particleSystem_transformDown: {fileID: 2542549201762901667}
+  target_point_strike: {fileID: 8486652825026523770}
+  target_point_fly: {fileID: 4363515401934774634}
+  target_point_spawn: {fileID: 5838585973898508217}
+  target_point_catch: {fileID: 2263758459305243064}
+  target_point_initial: {fileID: 11400000, guid: 22087da2eac5f40228276463a469095b, type: 2}
+  target_point_secondary: {fileID: 11400000, guid: 1512f711a25e54f919f111cc8c522b56, type: 2}
 --- !u!1 &6614455201431764624
 GameObject:
   m_ObjectHideFlags: 0
