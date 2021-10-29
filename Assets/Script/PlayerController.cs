@@ -121,8 +121,7 @@ public class PlayerController : MonoBehaviour
 		// Toogle on the current status model renderer
 		ToggleRenderer( currentStatus.status_Name, true );
 
-		// Set Initial Point for player to strike
-		target_point_initial.sharedValue   = target_point_strike.position;
+target_point_initial.sharedValue   = target_point_strike.position;
 		target_point_secondary.sharedValue = target_point_fly.position;
 	}
 
@@ -170,6 +169,7 @@ public class PlayerController : MonoBehaviour
 
     private void LevelStartResponse()
     {
+		model_baseball_bat.gameObject.SetActive( false );
 
 		currentWaypoint = startWaypointReference.sharedValue as Waypoint;
 		currentWaypoint.PlayerEntered( this );
