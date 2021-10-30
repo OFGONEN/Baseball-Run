@@ -83,6 +83,22 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1316281647174308987, guid: b1ac70065d5db4c439f8caaed6e7e80b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316281648557661053, guid: b1ac70065d5db4c439f8caaed6e7e80b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316281648557661053, guid: b1ac70065d5db4c439f8caaed6e7e80b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316281648557661053, guid: b1ac70065d5db4c439f8caaed6e7e80b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1316281648557661055, guid: b1ac70065d5db4c439f8caaed6e7e80b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
