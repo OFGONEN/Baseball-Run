@@ -1247,6 +1247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ui_loading_bar_level_progress
       objectReference: {fileID: 0}
+    - target: {fileID: 453416092374961846, guid: 1caa7843707589a4496bb5c848924651, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1caa7843707589a4496bb5c848924651, type: 3}
 --- !u!114 &573053808394766274 stripped
