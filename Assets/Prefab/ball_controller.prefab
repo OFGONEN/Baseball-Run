@@ -88,6 +88,7 @@ MonoBehaviour:
   ball: {fileID: 405664620001957617}
   ballSpawnPoint: {fileID: 156373299057437896}
   ballHeightProperty: {fileID: 11400000, guid: a9180d554ecf04bd3bd71644ac799474, type: 2}
+  ballHeight_RatioProperty: {fileID: 11400000, guid: 88a29222b6c4248d7a9c4f73d28428f7, type: 2}
   ball_initial_TargetPoint: {fileID: 11400000, guid: 22087da2eac5f40228276463a469095b, type: 2}
   ball_secondary_TargetPoint: {fileID: 11400000, guid: 1512f711a25e54f919f111cc8c522b56, type: 2}
 --- !u!1001 &156373298187264552
