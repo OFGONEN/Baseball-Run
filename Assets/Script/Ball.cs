@@ -22,6 +22,7 @@ public class Ball : MonoBehaviour
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
 
 	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeightProperty;
+	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeight_RatioProperty;
     [ BoxGroup( "Shared Variables" ) ] public SharedVector3 ball_initial_TargetPoint;
     [ BoxGroup( "Shared Variables" ) ] public SharedVector3 ball_secondary_TargetPoint;
 
@@ -81,6 +82,7 @@ public class Ball : MonoBehaviour
 		}
 
 		ballHeightProperty.SetValue( height );
+		ballHeight_RatioProperty.SetValue( height / Settings.ball_height_max );
 	}
 
     private void BallStrikeResponse()
@@ -88,7 +90,9 @@ public class Ball : MonoBehaviour
 		FFLogger.Log( "Ball Strike" );
 
 		var strikeEvent = ballStrikeEventListener.gameEvent as FloatGameEvent;
-		ballHeightProperty.SetValue( strikeEvent.eventValue * Settings.ball_height_cofactor_strike );
+		var height = strikeEvent.eventValue * Settings.ball_height_cofactor_strike;
+		ballHeightProperty.SetValue( height );
+		ballHeight_RatioProperty.SetValue( height / Settings.ball_height_max );
 
 		// ball.gameObject.SetActive( true );
 		ball.position = ballSpawnPoint.position;
@@ -140,7 +144,9 @@ public class Ball : MonoBehaviour
 		else 
 			modify = modifyEvent.eventValue * GameSettings.Instance.ball_modify_cofactor_negative;
 
-		ballHeightProperty.SetValue( ballHeightProperty.sharedValue + modify );
+		var height = ballHeightProperty.sharedValue + modify;
+		ballHeightProperty.SetValue( height );
+		ballHeight_RatioProperty.SetValue( height / Settings.ball_height_max );
 	}
 
 	private void OnBallStrikeComplete()
