@@ -37,3 +37,4 @@ MonoBehaviour:
   - {fileID: 8165191780373496524, guid: 1aacc0715928143318a93858a8d77cce, type: 3}
   - {fileID: 311064565296238623, guid: e7f5876df77be4d5db2e48940767ad12, type: 3}
   - {fileID: 1614033756196351886, guid: 339f5aa1322624f568c6edd4d767f5ef, type: 3}
+  ballThrower: {fileID: 156373299073997141, guid: c8e5f57fca11043a7b01cc4b1f8aeb43, type: 3}

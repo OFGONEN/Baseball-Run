@@ -23,6 +23,8 @@ namespace FFEditor
 		[ BoxGroup( "Gate Props" ) ] public GameObject[] positive_objects;
 		[ BoxGroup( "Gate Props" ) ] public GameObject[] negative_objects;
 
+
+        [ HorizontalLine ] public GameObject ballThrower;
 			
 #endregion
 
@@ -140,6 +142,28 @@ namespace FFEditor
 
 				EditorSceneManager.SaveScene( activeScene );
 			}
+		}
+
+		[ Button() ]
+		public void InsertBallThrower()
+		{
+			var scenes = EditorBuildSettings.scenes;
+
+			for( var i = 1; i <= scenes.Length - 1; i++ )
+			{
+				var activeScene = EditorSceneManager.OpenScene( scenes[ i ].path );
+
+				EditorSceneManager.MarkSceneDirty( activeScene );
+
+				var player = GameObject.Find( "player" ) as GameObject;
+				player.transform.position = Vector3.forward * -8f;
+
+				var ballThrower_Instance = PrefabUtility.InstantiatePrefab( ballThrower ) as GameObject;
+				ballThrower_Instance.transform.position = Vector3.zero;
+				ballThrower_Instance.transform.SetSiblingIndex( player.transform.GetSiblingIndex() + 1 );
+
+				EditorSceneManager.SaveScene( activeScene );
+			}		
 		}
 #endregion
 
