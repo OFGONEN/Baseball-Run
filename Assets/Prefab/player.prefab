@@ -270,6 +270,8 @@ MonoBehaviour:
   fillingImage: {fileID: 1496507340415610016}
   statusProperty: {fileID: 11400000, guid: 839cbad99c40a6543822999b9eaafc65, type: 2}
   statusText: {fileID: 1337132547058402973}
+  ballCatchListener:
+    gameEvent: {fileID: 11400000, guid: 6d5e68777e00f423bb9c951bfb1ad53a, type: 2}
 --- !u!114 &3811629588138237236
 MonoBehaviour:
   m_ObjectHideFlags: 0

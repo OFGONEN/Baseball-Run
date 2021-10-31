@@ -12,6 +12,8 @@ public class UIStatus : UILoadingBar
 #region Fields
     [ BoxGroup( "Shared Variables" ) ] public Status_Property statusProperty;
 	[ BoxGroup( "UI Elements" ) ] public TextMeshProUGUI statusText;
+
+	public EventListenerDelegateResponse ballCatchListener;
 #endregion
 
 #region Properties
@@ -23,6 +25,7 @@ public class UIStatus : UILoadingBar
 		base.OnEnable();
 
 		statusProperty.changeEvent += OnStatusChange;
+		ballCatchListener.OnEnable();
 	}
 
 	protected override void OnDisable()
@@ -30,11 +33,14 @@ public class UIStatus : UILoadingBar
 		base.OnDisable();
 
 		statusProperty.changeEvent -= OnStatusChange;
+		ballCatchListener.OnDisable();
 	}
 
 	protected override void Awake()
 	{
 		base.Awake();
+
+		ballCatchListener.response = BallCatchResponse;
 
 		OnStatusChange();
 	}
@@ -49,6 +55,11 @@ public class UIStatus : UILoadingBar
 		statusText.text    = statusProperty.status_Name;
 		statusText.color   = statusProperty.status_Color;
 		fillingImage.color = statusProperty.status_Color;
+	}
+
+	private void BallCatchResponse()
+	{
+		gameObject.SetActive( false );
 	}
 #endregion
 
