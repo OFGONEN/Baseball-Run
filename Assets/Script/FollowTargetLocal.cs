@@ -10,11 +10,11 @@ public class FollowTargetLocal : MonoBehaviour
 
     private void Awake()
     {
-        diff = target.position - transform.position;
+        diff = target.localPosition - transform.localPosition;
     }
 
     private void Update()
     {
-        transform.position = target.position - diff;
+        transform.localPosition = target.localPosition - diff;
     }
 }
