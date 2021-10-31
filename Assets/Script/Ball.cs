@@ -16,7 +16,6 @@ public class Ball : MonoBehaviour
     [ BoxGroup("Event Listeners" ) ] public EventListenerDelegateResponse modifyEventListener;
 
     [ BoxGroup( "Fired Events" ) ] public GameEvent ballCatchEvent;
-    [ BoxGroup( "Fired Events" ) ] public ParticleSpawnEvent particleSpawnEvent;
 
     [ BoxGroup( "Setup" ) ] public Transform ball;
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
@@ -115,9 +114,6 @@ public class Ball : MonoBehaviour
 		sequence.AppendCallback( OnBallStrike );
 		sequence.Append( tween_fly );
 		sequence.OnComplete( OnBallStrikeComplete );
-
-		// Ball Catch particle effect
-		particleSpawnEvent.Raise( "ball_catch", ball_secondary_TargetPoint.sharedValue );
 	}
 
 	private void BallCatchResponse()
