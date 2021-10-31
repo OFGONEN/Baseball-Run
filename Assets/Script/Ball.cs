@@ -96,6 +96,8 @@ public class Ball : MonoBehaviour
 
 		// ball.gameObject.SetActive( true );
 		ball.position = ballSpawnPoint.position;
+		ball.LookAt( ball_initial_TargetPoint.sharedValue );
+
 
 		var sequence = DOTween.Sequence();
 		
@@ -108,6 +110,7 @@ public class Ball : MonoBehaviour
 		sequence.AppendInterval( Settings.ball_delay_strike_point );
 		sequence.AppendCallback( () => ball.gameObject.SetActive( true ) );
 		sequence.Append( tween_strike );
+		sequence.AppendCallback( () => ball.LookAt( ball_secondary_TargetPoint.sharedValue ) );
 		sequence.Append( tween_fly );
 		sequence.OnComplete( OnBallStrikeComplete );
 
@@ -126,6 +129,7 @@ public class Ball : MonoBehaviour
 		sequence.AppendCallback( () =>
 		{
 			ball.position = ball_initial_TargetPoint.sharedValue;
+			ball.LookAt( ball_secondary_TargetPoint.sharedValue );
 			ball.gameObject.SetActive( true );
 		} );
 
