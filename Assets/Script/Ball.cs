@@ -20,6 +20,7 @@ public class Ball : MonoBehaviour
 
     [ BoxGroup( "Setup" ) ] public Transform ball;
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
+    [ BoxGroup( "Setup" ) ] public ParticleSystem strikeParticle;
 
 	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeightProperty;
 	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeight_RatioProperty;
@@ -110,7 +111,7 @@ public class Ball : MonoBehaviour
 		sequence.AppendInterval( Settings.ball_delay_strike_point );
 		sequence.AppendCallback( () => ball.gameObject.SetActive( true ) );
 		sequence.Append( tween_strike );
-		sequence.AppendCallback( () => ball.LookAt( ball_secondary_TargetPoint.sharedValue ) );
+		sequence.AppendCallback( OnBallStrike );
 		sequence.Append( tween_fly );
 		sequence.OnComplete( OnBallStrikeComplete );
 
@@ -164,6 +165,14 @@ public class Ball : MonoBehaviour
 	{
 		ballCatchEventListener.response = ExtensionMethods.EmptyMethod;
 		ball.gameObject.SetActive( false );
+	}
+
+	private void OnBallStrike()
+	{
+		strikeParticle.transform.position = ball_initial_TargetPoint.sharedValue;
+		strikeParticle.Play();
+
+		ball.LookAt( ball_secondary_TargetPoint.sharedValue );
 	}
 
 	private void LevelStartEvent()
