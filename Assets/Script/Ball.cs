@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour
     [ BoxGroup( "Setup" ) ] public Transform ball;
     [ BoxGroup( "Setup" ) ] public Transform ballSpawnPoint;
     [ BoxGroup( "Setup" ) ] public ParticleSystem strikeParticle;
+    [ BoxGroup( "Setup" ) ] public ParticleSystem catchParticle;
 
 	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeightProperty;
 	[ BoxGroup( "Shared Variables" ) ] public SharedFloatProperty ballHeight_RatioProperty;
@@ -163,6 +164,9 @@ public class Ball : MonoBehaviour
 
 	private void OnBallCatchComplete()
 	{
+		catchParticle.transform.position = ball_secondary_TargetPoint.sharedValue;
+		catchParticle.Play();
+
 		ballCatchEventListener.response = ExtensionMethods.EmptyMethod;
 		ball.gameObject.SetActive( false );
 	}
