@@ -48,7 +48,7 @@ MonoBehaviour:
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   modifier_Event: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
   modifier_Point: 10
-  modifier_ParticleName: money_scatter
+  modifier_ParticleName: ticket
   pairGate: {fileID: 0}
 --- !u!1 &723800685063831018
 GameObject:

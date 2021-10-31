@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2dda4d38786faa47bc9a024540d1517, type: 3}
-  m_Name: particle_pool_positive_scatter
+  m_Name: particle_pool_negative_red
   m_EditorClassIdentifier: 
   stackSize: 10
-  poolEntity: {fileID: 8736016242698045299, guid: 78f598f716b213e4bab7442259eb6447, type: 3}
+  poolEntity: {fileID: 8736016242698045299, guid: 030d1a5f0b053a640850f45aceb20597, type: 3}
