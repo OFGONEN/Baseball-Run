@@ -88,7 +88,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ball_delay_catch_point: 1
+  ball_delay_catch_point: 1.5
   ball_duration_catch_point: 0.25
   ball_curve_catch_point:
     serializedVersion: 2
