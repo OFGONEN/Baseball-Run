@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092158969843411621}
   - component: {fileID: 3386449201845929658}
+  - component: {fileID: 1162871438698796344}
   m_Layer: 29
   m_Name: modifier_resting_positive
   m_TagString: Untagged
@@ -49,6 +50,21 @@ MonoBehaviour:
   modifier_Event: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
   modifier_Point: 10
   modifier_ParticleName: ticket
+--- !u!114 &1162871438698796344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092158969843411623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be152ae0b157446d995ac8073ba7ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetComponent: {fileID: 3386449201845929658}
+  remoteDatas: []
+  elephantConfigEvent: {fileID: 11400000, guid: fce0517684d57439aad15342a420da2f, type: 2}
 --- !u!1 &2092158971410706225
 GameObject:
   m_ObjectHideFlags: 0

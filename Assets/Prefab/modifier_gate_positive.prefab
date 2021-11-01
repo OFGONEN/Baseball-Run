@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723800683477006462}
   - component: {fileID: 6362536634872911948}
+  - component: {fileID: -7321513338939920322}
   m_Layer: 29
   m_Name: modifier_gate_positive
   m_TagString: Untagged
@@ -50,6 +51,23 @@ MonoBehaviour:
   modifier_Point: 10
   modifier_ParticleName: ticket
   pairGate: {fileID: 0}
+--- !u!114 &-7321513338939920322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723800683477006460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be152ae0b157446d995ac8073ba7ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetComponent: {fileID: 6362536634872911948}
+  remoteDatas:
+  - configKeyName: positive_gate
+    targetFieldName: modifier_Point
+  elephantConfigEvent: {fileID: 11400000, guid: fce0517684d57439aad15342a420da2f, type: 2}
 --- !u!1 &723800685063831018
 GameObject:
   m_ObjectHideFlags: 0

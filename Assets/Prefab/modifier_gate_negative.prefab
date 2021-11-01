@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52207601211322774}
   - component: {fileID: 1465794208017173674}
+  - component: {fileID: -6723578337424373422}
   m_Layer: 29
   m_Name: modifier_gate_negative
   m_TagString: Untagged
@@ -104,9 +105,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSpawnEvent: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   modifier_Event: {fileID: 11400000, guid: 0b70e92b47c36c149835ddb4da2bec76, type: 2}
-  modifier_Point: -10
+  modifier_Point: -20
   modifier_ParticleName: red
   pairGate: {fileID: 0}
+--- !u!114 &-6723578337424373422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52207601211322772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be152ae0b157446d995ac8073ba7ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetComponent: {fileID: 1465794208017173674}
+  remoteDatas:
+  - configKeyName: negative_gate
+    targetFieldName: modifier_Point
+  elephantConfigEvent: {fileID: 11400000, guid: fce0517684d57439aad15342a420da2f, type: 2}
 --- !u!1001 &8877393752508380627
 PrefabInstance:
   m_ObjectHideFlags: 0

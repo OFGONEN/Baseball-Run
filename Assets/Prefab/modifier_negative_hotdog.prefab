@@ -95,6 +95,22 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Position.z
       value: 0.83
       objectReference: {fileID: 0}
+    - target: {fileID: 7355542916029043137, guid: 688083b6e48eb1a44bb07fd8121617da, type: 3}
+      propertyPath: remoteDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7355542916029043137, guid: 688083b6e48eb1a44bb07fd8121617da, type: 3}
+      propertyPath: remoteDatas.Array.data[0].configKeyName
+      value: negative_hotdog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7355542916029043137, guid: 688083b6e48eb1a44bb07fd8121617da, type: 3}
+      propertyPath: remoteDatas.Array.data[0].targetFieldName
+      value: modifier_Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429856120270993813, guid: 688083b6e48eb1a44bb07fd8121617da, type: 3}
+      propertyPath: modifier_Point
+      value: -20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 688083b6e48eb1a44bb07fd8121617da, type: 3}
 --- !u!4 &6168734130168227892 stripped
