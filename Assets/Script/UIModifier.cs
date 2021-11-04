@@ -91,14 +91,17 @@ public class UIModifier : UIText
 			sequence.Kill();
 
 		stringBuilder.Clear();
-		stringBuilder.Append( '+' );
+
+		if( modifyAmount > 0)
+			stringBuilder.Append( '+' );
+
 		stringBuilder.Append( modifyAmount.ToString() );
 
 		sequence = DOTween.Sequence();
 
 		uiTransform.localPosition = uiStartLocalPosition;
 
-		textRenderer.text   = stringBuilder.ToString() + " $";
+		textRenderer.text   = stringBuilder.ToString();
 		textRenderer.color  = textStartColor;
 		imageRenderer.color = iconStartColor;
 
