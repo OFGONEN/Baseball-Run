@@ -26,6 +26,8 @@ namespace FFStudio
 		[ Foldout( "UI Settings" ), Tooltip( "Duration of the scaling for ui element"           ) ] public float ui_Entity_Scale_TweenDuration;
 		[ Foldout( "UI Settings" ), Tooltip( "Duration of the movement for floating ui element" ) ] public float ui_Entity_FloatingMove_TweenDuration;
         [ Foldout( "UI Settings" ), Tooltip( "Percentage of the screen to register a swipe"     ) ] public int swipeThreshold;
+		[ Foldout( "UI Settings" ), Tooltip( "Size of the punch scale for ui element"           ) ] public float ui_Entity_Scale_PunchSize;
+		[ Foldout( "UI Settings" ), Tooltip( "Duration of the punch scale for ui element"           ) ] public float ui_Entity_Scale_PunchSize_Duration;
 
 		// Input
 		[ Foldout( "Input" ), Tooltip( "Input horizontal threshold" ) ] public float input_horizontal_threshold = 0.1f;

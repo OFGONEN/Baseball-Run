@@ -20,6 +20,8 @@ MonoBehaviour:
   ui_Entity_Scale_TweenDuration: 0.5
   ui_Entity_FloatingMove_TweenDuration: 0.5
   swipeThreshold: 2
+  ui_Entity_Scale_PunchSize: 0.25
+  ui_Entity_Scale_PunchSize_Duration: 0.5
   input_horizontal_threshold: 1.5
   input_horizontal_clamp: 17.5
   ui_world_modifier_duration: 0.75
@@ -114,8 +116,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ball_height_max: 100
-  ball_height_cofactor_strike: 25
+  ball_height_max: 20
+  ball_height_cofactor_strike: 10
   ball_height_deplete_speed: 1
   ball_modify_cofactor_positive: 0.25
   ball_modify_cofactor_negative: 0.15
