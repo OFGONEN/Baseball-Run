@@ -215,6 +215,14 @@ namespace FFStudio
 			return theVector.x + theVector.y + theVector.z;
 		}
 
+		public static Vector3 AddXY( this Vector3 theVector, Vector2 random )
+		{
+			theVector.x += random.x;
+			theVector.y += random.y;
+
+			return theVector;
+		}
+
 		public static TransformData GetTransformData( this Transform transform ) // Global values
 		{
 			TransformData data;

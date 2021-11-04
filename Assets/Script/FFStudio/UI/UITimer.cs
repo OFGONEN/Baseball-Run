@@ -14,7 +14,9 @@ public class UITimer : UIText
 	public MultipleEventListenerDelegateResponse levelFinishedListener;
 	public EventListenerDelegateResponse modifyEventListener;
 	public SharedFloatProperty ballHeightProperty;
-	
+	public UIFloatingTextStack uiFloatingTextStack;
+	public RectTransform floatingTextSpawnPoint;
+
 	// Private Fields \\
 	private Tween scalePunchTween;
 #endregion
@@ -45,6 +47,8 @@ public class UITimer : UIText
 		levelFinishedListener.response = LevelFinishedResponse;
 		modifyEventListener.response   = ModifyEventResponse;
 		textRenderer.text              = "00.00";
+
+		uiFloatingTextStack.InitPool( uiTransform.parent, false );
 	}
 #endregion
 
@@ -66,11 +70,32 @@ public class UITimer : UIText
 
 	private void ModifyEventResponse()
 	{
+		var modifyValue = ( modifyEventListener.gameEvent as FloatGameEvent ).eventValue;
 		if( scalePunchTween != null )
 		{
 			scalePunchTween.Kill();
 			uiTransform.localScale = Vector3.one;
 		}
+
+		var floatingText = uiFloatingTextStack.GiveEntity( uiTransform, false );
+
+		if( modifyValue > 0 )
+		{
+			floatingText.textRenderer.color = Color.green;
+			floatingText.textRenderer.text = "+" + modifyValue * GameSettings.Instance.ball_modify_cofactor_positive;
+		}
+		else 
+		{
+			floatingText.textRenderer.color = Color.red;
+			floatingText.textRenderer.text = ( modifyValue * GameSettings.Instance.ball_modify_cofactor_negative ).ToString();
+		}
+
+		var targetCofactor = GameSettings.Instance.ui_Entity_FloatingMove_Cofactor;
+
+		floatingText.uiTransform.position = floatingTextSpawnPoint.position.AddXY( Random.insideUnitCircle * GameSettings.Instance.ui_Entity_FloatingMove_Spawn_Cofactor );
+		floatingText.targetCofactor = Random.Range( 0.8f * targetCofactor, 1.2f * targetCofactor );
+		floatingText.gameObject.SetActive( true );
+		floatingText.GoToTargetPosition();
 
 		scalePunchTween = uiTransform.DOPunchScale( Vector3.one * GameSettings.Instance.ui_Entity_Scale_PunchSize, GameSettings.Instance.ui_Entity_Scale_PunchSize_Duration );
 	}
