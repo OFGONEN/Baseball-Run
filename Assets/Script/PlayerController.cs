@@ -182,9 +182,9 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		var transform = ModifyStatus( modifyAmount );
 
-		if( statusPoint_Current < 0 )
-			ballCatchEvent.Raise();
-		else if ( transform ) 
+		// if( statusPoint_Current < 0 )
+		// 	ballCatchEvent.Raise();
+		if ( transform ) 
 		{
 			if( modifyAmount > 0 )
 				TransformUp();
@@ -260,11 +260,9 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		var transform = ModifyStatus( -lossStatus );
 
-		if( statusPoint_Current < 0 )
-		{
-			ballCatchEvent.Raise();
-		}
-		else if ( !catwalking && transform ) 
+		// if( statusPoint_Current < 0 )
+		// 	ballCatchEvent.Raise();
+		if ( !catwalking && transform ) 
 		{
 			TransformDown();
 		}
@@ -298,7 +296,8 @@ target_point_initial.sharedValue   = target_point_strike.position;
 			newStatusPoint = GameSettings.Instance.status_maxPoint;
 		}
 
-		statusPoint_Current = newStatusPoint;
+		// statusPoint_Current = newStatusPoint;
+		statusPoint_Current = Mathf.Max( newStatusPoint, 0 );
 		playerStatusRatioProperty.SetValue( statusPoint_Current / GameSettings.Instance.status_maxPoint );
 
 		return transform;
