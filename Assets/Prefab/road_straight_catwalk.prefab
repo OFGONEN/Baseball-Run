@@ -51,7 +51,7 @@ MonoBehaviour:
   player_ExitedEvent: {fileID: 0}
   nextWaypoint: {fileID: 0}
   targetPoint: {x: 0, y: 0, z: 28.5}
-  wide: 5
+  wide: 7
 --- !u!1001 &562532366282027919
 PrefabInstance:
   m_ObjectHideFlags: 0
