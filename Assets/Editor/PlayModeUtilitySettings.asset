@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f445f883023fb94e8362b132fa99c4c, type: 3}
   m_Name: PlayModeUtilitySettings
   m_EditorClassIdentifier: 
-  useDefaultScene: 0
+  useDefaultScene: 1
   defaultSceneIndex: 0
