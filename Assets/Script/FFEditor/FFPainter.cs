@@ -45,6 +45,15 @@ public class FFPainter : MonoBehaviour
 		updateMethod = ExtensionMethods.EmptyMethod;
 	}
 
+    [ Button() ]
+    public void DeleteSpawned()
+    {
+		for( var i = parentToSpawn.childCount - 1; i >= 0 ; i-- )
+		{
+			DestroyImmediate( parentToSpawn.GetChild( i ) );
+		}
+	}
+
     private void Update()
     {
 		updateMethod();
