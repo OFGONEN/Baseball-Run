@@ -146,7 +146,7 @@ public class Ball : MonoBehaviour
 		else 
 			modify = modifyEvent.eventValue * GameSettings.Instance.ball_modify_cofactor_negative;
 
-		var height = ballHeightProperty.sharedValue + modify;
+		var height = Mathf.Clamp( ballHeightProperty.sharedValue + modify, 0, GameSettings.Instance.ball_height_max);
 		ballHeightProperty.SetValue( height );
 		ballHeight_RatioProperty.SetValue( height / Settings.ball_height_max );
 	}
