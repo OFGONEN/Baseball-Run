@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformUp;
 	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_transformDown;
+	[ BoxGroup( "Setup" ) ] public ParticleSystem particleSystem_speed;
 
 
     [ BoxGroup( "Target Points" ) ] public Transform target_point_strike;
@@ -199,6 +200,7 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 		vertical_speed = GameSettings.Instance.player_speed_catwalking;
 
+		particleSystem_speed.Play();
 		animatorGroup.SetBool( "slide", true );
 	}
 
@@ -339,6 +341,8 @@ target_point_initial.sharedValue   = target_point_strike.position;
 
 	private void LevelComplete()
 	{
+		particleSystem_speed.Stop();
+
 		updateMethod = ExtensionMethods.EmptyMethod;
 
 		target_point_initial.sharedValue   = target_point_spawn.position;
