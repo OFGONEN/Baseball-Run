@@ -50,7 +50,7 @@ MonoBehaviour:
   player_EnteredEvent: {fileID: 11400000, guid: 38530e60d192c9b4182cc5d8d3bcde96, type: 2}
   player_ExitedEvent: {fileID: 0}
   nextWaypoint: {fileID: 0}
-  targetPoint: {x: 0, y: 0, z: 28.5}
+  targetPoint: {x: 0, y: 0, z: 87}
   wide: 7
 --- !u!1001 &562532366282027919
 PrefabInstance:
@@ -66,6 +66,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f0808a1d5ffa7c647afed299c6821021, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0808a1d5ffa7c647afed299c6821021, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f0808a1d5ffa7c647afed299c6821021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -492,6 +496,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10b114cb0627b5146873aeb97119e71c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10b114cb0627b5146873aeb97119e71c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -563,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.549
+      value: 89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}
       propertyPath: m_LocalRotation.w
@@ -596,6 +604,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}
       propertyPath: m_Name
       value: model_cather
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 10e8f9d717b466c478c0a3003f4b433d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ecf6fe7eb3fab4fab150ed4cddd527, type: 3}

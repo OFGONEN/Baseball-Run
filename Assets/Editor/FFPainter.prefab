@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2400731750920601761, guid: 597488b8e6e5f654ea7b7e0f94af715f, type: 3}
-  heightToSpawn: 0.5
+  heightToSpawn: 0.6
   distanceToSpawn: 1.25
