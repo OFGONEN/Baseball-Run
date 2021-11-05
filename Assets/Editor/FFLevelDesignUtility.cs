@@ -145,6 +145,47 @@ namespace FFEditor
 		}
 
 		[ Button() ]
+		public void InsertCurrentGateProps()
+		{
+			EditorSceneManager.MarkAllScenesDirty();
+
+			var gates = GameObject.FindGameObjectsWithTag( "Gate" );
+
+			for( var a = 0; a < gates.Length; a++ )
+			{
+				var gate_positive = gates[ a ].transform.GetChild( 0 );
+				var gate_negative = gates[ a ].transform.GetChild( 1 );
+
+				var random = Random.Range( 0, positive_names.Length );
+
+				var positive_text = gate_positive.GetComponentInChildren<TextMeshProUGUI>();
+				var negative_text = gate_negative.GetComponentInChildren<TextMeshProUGUI>();
+
+				positive_text.text = positive_names[ random ];
+				negative_text.text = negative_names[ random ];
+
+				var positive_Prop = PrefabUtility.InstantiatePrefab( positive_objects[ random ] ) as GameObject;
+				var negative_Prop = PrefabUtility.InstantiatePrefab( negative_objects[ random ] ) as GameObject;
+
+				positive_Prop.transform.SetParent( gate_positive.transform );
+				positive_Prop.transform.localPosition = Vector3.zero;
+
+				negative_Prop.transform.SetParent( gate_negative.transform );
+				negative_Prop.transform.localPosition = Vector3.zero;
+
+				PrefabUtility.RecordPrefabInstancePropertyModifications( positive_text );
+				PrefabUtility.RecordPrefabInstancePropertyModifications( negative_text );
+
+				PrefabUtility.RecordPrefabInstancePropertyModifications( gate_positive );
+				PrefabUtility.RecordPrefabInstancePropertyModifications( gate_negative );
+
+				PrefabUtility.RecordPrefabInstancePropertyModifications( gates[ a ] );
+			}
+
+			EditorSceneManager.SaveOpenScenes();
+		}
+
+		[ Button() ]
 		public void InsertBallThrower()
 		{
 			var scenes = EditorBuildSettings.scenes;
