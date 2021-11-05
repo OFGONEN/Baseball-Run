@@ -35,7 +35,7 @@ MonoBehaviour:
   player_target_checkDistance: 0.1
   player_clamp_rotation: 45
   player_speed_vertical: 8
-  player_speed_catwalking: 4
+  player_speed_catwalking: 24
   player_speed_horizontal: 0.7
   player_speed_rotation: 90
   player_speed_turning: 10
@@ -123,6 +123,9 @@ MonoBehaviour:
   ball_height_deplete_speed: 1
   ball_modify_cofactor_positive: 0.25
   ball_modify_cofactor_negative: 0.15
+  camera_fieldOfView_duration: 0.5
+  camera_fieldOfView_normal: 60
+  camera_fieldOfView_catwalk: 90
   camera_speed_follow: 5
   camera_duration_movement: 1
   camera_duration_moveAndLook: 0.5

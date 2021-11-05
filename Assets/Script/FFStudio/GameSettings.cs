@@ -73,6 +73,9 @@ namespace FFStudio
 
 
 		// Camera
+		[ BoxGroup( "Camera" ), Tooltip( "Camera's field of view change duration" ) ] public float camera_fieldOfView_duration = 0.75f;
+		[ BoxGroup( "Camera" ), Tooltip( "Camera's field of view when catwalking" ) ] public float camera_fieldOfView_normal = 60f;
+		[ BoxGroup( "Camera" ), Tooltip( "Camera's field of view when catwalking" ) ] public float camera_fieldOfView_catwalk = 90f;
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's target follow speed" ) ] public float camera_speed_follow = 1f;
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's movement duration" ) ] public float camera_duration_movement = 1f;
 		[ BoxGroup( "Camera" ), Tooltip( "Camera's movement duration" ) ] public float camera_duration_moveAndLook = 0.5f;

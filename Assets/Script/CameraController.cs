@@ -14,14 +14,18 @@ public class CameraController : MonoBehaviour
     [ Header( "Event Listeners" ) ] 
     public EventListenerDelegateResponse levelStartedListener;
     public MultipleEventListenerDelegateResponse levelCompleteListener;
+    public EventListenerDelegateResponse catwalkEventListener;
+    public EventListenerDelegateResponse ballCatchEventListener;
 
     [ HorizontalLine ]
     [ BoxGroup( "Setup" ), SerializeField ] private Transform target;
     [ BoxGroup( "Setup" ), SerializeField ] private Vector3 targetPosition;
     [ BoxGroup( "Setup" ), SerializeField ] private Vector3 targetRotation;
 
-    // Private Fields \\
-    private UnityMessage updateMethod;
+	// Private Fields \\
+	private Camera mainCamera;
+
+	private UnityMessage updateMethod;
     private Sequence levelStartSequence;
 	private Sequence moveAndLookSequence;
 
@@ -37,12 +41,16 @@ public class CameraController : MonoBehaviour
     {
 		levelStartedListener.OnEnable();
 		levelCompleteListener.OnEnable();
+		catwalkEventListener.OnEnable();
+		ballCatchEventListener.OnEnable();
 	}
     
     private void OnDisable()
     {
  		levelStartedListener.OnDisable();
 		levelCompleteListener.OnDisable();
+		catwalkEventListener.OnDisable();
+		ballCatchEventListener.OnDisable();
 
 		if( moveAndLookSequence != null )
 		{
@@ -53,9 +61,12 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-		levelStartedListener.response = LevelStartedResponse;
-		levelCompleteListener.response = LevelCompleteResponse;
-		updateMethod                   = ExtensionMethods.EmptyMethod;
+		updateMethod                    = ExtensionMethods.EmptyMethod;
+		levelStartedListener.response   = LevelStartedResponse;
+		levelCompleteListener.response  = LevelCompleteResponse;
+		catwalkEventListener.response   = CatwalkEventResponse;
+		ballCatchEventListener.response = BallCatchEventResponse;
+		mainCamera                      = GetComponent< Camera >();
 	}
 
     private void Update()
@@ -148,6 +159,16 @@ public class CameraController : MonoBehaviour
 	{
 		moveAndLookSequence.Kill();
 		moveAndLookSequence = null;
+	}
+
+	private void CatwalkEventResponse()
+	{
+		mainCamera.DOFieldOfView( GameSettings.Instance.camera_fieldOfView_catwalk, GameSettings.Instance.camera_fieldOfView_duration );
+	}
+
+	private void BallCatchEventResponse()
+	{
+		mainCamera.DOFieldOfView( GameSettings.Instance.camera_fieldOfView_normal, GameSettings.Instance.camera_fieldOfView_duration );
 	}
 #endregion
 
