@@ -13,6 +13,7 @@ public class FFPainter : MonoBehaviour
 {
 #region Fields
     public GameObject prefab;
+	public Transform parentToSpawn;
 	public float heightToSpawn;
 	public float distanceToSpawn;
 
@@ -53,6 +54,8 @@ public class FFPainter : MonoBehaviour
     {
 		var gameObject                    = PrefabUtility.InstantiatePrefab( prefab ) as GameObject;
 		    gameObject.transform.position = transform.position.SetY( heightToSpawn );
+
+		gameObject.transform.SetParent( parentToSpawn );
 
 		lastSpawnedPosition = transform.position;
 	}
