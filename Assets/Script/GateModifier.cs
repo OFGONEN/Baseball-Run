@@ -27,7 +27,9 @@ public class GateModifier : Modifier
 
 		modiferCollider.enabled = false;
 		pairGate.DisableCollider();
-    }
+
+		transform.parent.gameObject.SetActive( false );
+	}
 #endregion
 
 #region Editor Only
