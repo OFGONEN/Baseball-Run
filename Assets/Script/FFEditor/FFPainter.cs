@@ -1,5 +1,6 @@
 /* Created by and for usage of FF Studios (2021). */
 
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,7 +67,6 @@ public class FFPainter : MonoBehaviour
 #endregion
 
 #region Editor Only
-#if UNITY_EDITOR
-#endif
 #endregion
 }
+#endif
