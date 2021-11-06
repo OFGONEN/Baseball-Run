@@ -1,5 +1,91 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8040860394556694241
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
+  m_Name: AmbientOcclusion
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0
+  color:
+    overrideState: 0
+    value: {r: 0, g: 0, b: 0, a: 1}
+  ambientOnly:
+    overrideState: 0
+    value: 1
+  noiseFilterTolerance:
+    overrideState: 0
+    value: 0
+  blurTolerance:
+    overrideState: 0
+    value: -4.6
+  upsampleTolerance:
+    overrideState: 0
+    value: -12
+  thicknessModifier:
+    overrideState: 1
+    value: 1
+  directLightingStrength:
+    overrideState: 0
+    value: 0
+  radius:
+    overrideState: 0
+    value: 0.25
+  quality:
+    overrideState: 0
+    value: 2
+--- !u!114 &-3888030040447330037
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
+  m_Name: AutoExposure
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  filtering:
+    overrideState: 1
+    value: {x: 53.999985, y: 99}
+  minLuminance:
+    overrideState: 0
+    value: 2.71
+  maxLuminance:
+    overrideState: 0
+    value: 2.81
+  keyValue:
+    overrideState: 0
+    value: 1
+  eyeAdaptation:
+    overrideState: 0
+    value: 0
+  speedUp:
+    overrideState: 0
+    value: 2
+  speedDown:
+    overrideState: 0
+    value: 1
 --- !u!114 &-1558551265898107196
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -17,8 +103,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0
   externalLut:
     overrideState: 0
     value: {fileID: 0}
@@ -45,36 +131,36 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   ldrLut:
-    overrideState: 0
-    value: {fileID: 0}
+    overrideState: 1
+    value: {fileID: 2800000, guid: 7cb635093efaa7d4ebaba3ca8fdb5807, type: 3}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.073
   temperature:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -13
   tint:
     overrideState: 0
-    value: 0
+    value: 6
   colorFilter:
-    overrideState: 1
-    value: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
-  hueShift:
     overrideState: 0
-    value: 0
+    value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    overrideState: 1
+    value: -4
   saturation:
     overrideState: 1
     value: 10
   brightness:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 7
   postExposure:
     overrideState: 0
     value: 0
   contrast:
-    overrideState: 1
-    value: 10
+    overrideState: 0
+    value: -2
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1327,6 +1413,8 @@ MonoBehaviour:
   - {fileID: -1558551265898107196}
   - {fileID: 2478815610763169474}
   - {fileID: 3486369856343842821}
+  - {fileID: -8040860394556694241}
+  - {fileID: -3888030040447330037}
 --- !u!114 &2478815610763169474
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1345,7 +1433,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: -21.4
+    value: -100
   intensityX:
     overrideState: 0
     value: 1
@@ -1378,12 +1466,12 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   spectralLut:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 0
-    value: 0.045
+    overrideState: 1
+    value: 0
   fastMode:
-    overrideState: 0
+    overrideState: 1
     value: 0
