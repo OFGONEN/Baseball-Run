@@ -322,6 +322,19 @@ namespace FFEditor
 
 			Debug.Log( "Game Settings max level count: " + gameSettings.maxLevelCount );
 		}
+
+
+		[ MenuItem( "FFStudios/Create and Set Level Datas" ) ]
+		public static void CreateAndSetLevelData()
+		{
+			for( var i = 2; i <= gameSettings.maxLevelCount ; i++ )
+			{
+				var level_data = ScriptableObject.CreateInstance< LevelData >();
+				level_data.sceneIndex = i;
+
+				AssetDatabase.CreateAsset( level_data, "Assets/Resources/level_data_" + i + ".asset" );
+			}
+		}
 	}
 }
 
