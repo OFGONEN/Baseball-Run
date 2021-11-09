@@ -12,32 +12,46 @@ namespace FFStudio
 #region Fields
 		[Header( "Event Listeners" )]
 		public EventListenerDelegateResponse elephantEventListener;
+		public EventListenerDelegateResponse elephantRemoteConfigListener;
 #endregion
 
 #region UnityAPI
 		private void OnEnable()
 		{
 			elephantEventListener.OnEnable();
+			elephantRemoteConfigListener.OnEnable();
 		}
 
 		private void OnDisable()
 		{
 			elephantEventListener.OnDisable();
+			elephantRemoteConfigListener.OnDisable();
 		}
 
 		private void Awake()
 		{
-			elephantEventListener.response = ElephantEventResponse;
+			elephantEventListener.response        = ElephantEventResponse;
+			elephantRemoteConfigListener.response = ElephantRemoteConfigResponse;
+		}
 
-			if( !FB.IsInitialized )
-				FB.Init( OnFacebookInitialized, OnHideUnity );
-			else
-				FB.ActivateApp();
+		private void Start()
+		{
+			LoadRemoteConfigs();
 		}
 
 #endregion
 
 #region Implementation
+		void ElephantRemoteConfigResponse()
+		{
+			var configEvent = elephantRemoteConfigListener.gameEvent as ElephantConfigEvent;
+
+			var value = RemoteConfig.GetInstance().Get( configEvent.configKeyName );
+
+			if( value != null )
+				configEvent.source.SetFieldValue( configEvent.fieldName, value );
+		}
+
 		void ElephantEventResponse()
 		{
 			var gameEvent = elephantEventListener.gameEvent as ElephantLevelEvent;
@@ -58,24 +72,33 @@ namespace FFStudio
 					break;
 			}
 		}
-		void OnFacebookInitialized()
+
+		void LoadRemoteConfigs()
 		{
-			if( FB.IsInitialized )
+			var gameSettings = GameSettings.Instance;
+
+			if( !gameSettings )
+				return;
+
+			var remote = RemoteConfig.GetInstance();
+			var settings = remote.Get( "game_settings", "null" );
+
+			if( settings == null )
 			{
-				FB.ActivateApp();
-				Debug.Log( "[FFAnalitic] Facebook initiliazed" );
+				Debug.Log( "Remote GameSettings could not configured" );
+				return;
 			}
-			else
-				Debug.Log( "[FFAnalitic] Failed to initialize Facebook SDK" );
 
+			FFLogger.Log( "game_settings\n" + settings );
+			var setting_keys = settings.Split( ',' );
 
-			DontDestroyOnLoad( gameObject );
+			foreach( var settingName in setting_keys )
+			{
+				var value = remote.Get( settingName );
 
-		}
-
-		void OnHideUnity( bool hide )
-		{
-
+				if( value != null )
+					gameSettings.SetFieldValue( settingName, value );
+			}
 		}
 #endregion
 	}
