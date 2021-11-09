@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 0
+  - 377616910670940
   appLabels:
-  - App Name
+  - Baseball Runner
   cookie: 1
   logging: 1
   status: 1
