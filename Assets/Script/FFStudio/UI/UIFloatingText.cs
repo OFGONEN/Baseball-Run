@@ -10,18 +10,10 @@ public class UIFloatingText : UIText
 	public UIFloatingTextStack floatingTextStack;
 	
 	[ HideInInspector ] public Color textColor;
+	[ HideInInspector ] public float targetCofactor;
 #endregion
 
 #region Unity API
-	private void Awake()
-	{
-		textColor = textRenderer.color;
-	}
-	
-	private void OnDisable()
-	{
-		floatingTextStack.Stack.Push( this );
-	}
 #endregion
 
 #region API
@@ -29,7 +21,15 @@ public class UIFloatingText : UIText
 	{
 		textRenderer.DOFade( 0, GameSettings.Instance.ui_Entity_FloatingMove_TweenDuration )
 					.SetEase( Ease.InExpo );
-		return uiTransform.DOMove( destinationTransform.position, GameSettings.Instance.ui_Entity_FloatingMove_TweenDuration );
+		return uiTransform.DOMove( uiTransform.position + Vector3.up * targetCofactor, GameSettings.Instance.ui_Entity_FloatingMove_TweenDuration ).OnComplete( OnGoTargetComplete );
+	}
+#endregion
+
+
+#region Implementation
+	private void OnGoTargetComplete()
+	{
+		floatingTextStack.Stack.Push( this );
 	}
 #endregion
 }

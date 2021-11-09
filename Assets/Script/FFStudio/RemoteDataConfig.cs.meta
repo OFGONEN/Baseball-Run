@@ -3,7 +3,9 @@ guid: 6be152ae0b157446d995ac8073ba7ba2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - targetComponent: {instanceID: 0}
+  - elephantConfigEvent: {fileID: 11400000, guid: fce0517684d57439aad15342a420da2f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

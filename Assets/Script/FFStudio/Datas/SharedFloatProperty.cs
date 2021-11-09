@@ -18,5 +18,14 @@ namespace FFStudio
 				changeEvent?.Invoke();
 			}
 		}
+
+#if UNITY_EDITOR
+#region EditorOnly
+		private void OnValidate()
+		{
+			changeEvent?.Invoke();
+		}
+#endregion
+#endif
 	}
 }

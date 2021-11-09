@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - DebugOnly
+  - StartWaypoint
+  - WaypointParent
+  - FinishLine
+  - Gate
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcess
   - Water
   - UI
   - 
@@ -35,9 +39,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Probs
+  - Obstacle
+  - Actor
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -9,8 +9,8 @@ namespace FFStudio
 	public class LevelData : ScriptableObject
     {
 		[ BoxGroup( "Setup" ), Scene() ] public int sceneIndex;
-
         [ BoxGroup( "Setup" ) ] public bool overrideAsActiveScene;
+		[ BoxGroup( "Setup" ) ] public float levelStartStatusPoint = 10f;
 
     }
 }

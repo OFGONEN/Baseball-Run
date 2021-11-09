@@ -14,9 +14,121 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useRemoveConfig_GameSettings: 0
   useRemoveConfig_Components: 0
-  maxLevelCount: 1
+  maxLevelCount: 39
   ui_Entity_Move_TweenDuration: 0.5
   ui_Entity_Fade_TweenDuration: 0.5
   ui_Entity_Scale_TweenDuration: 0.5
   ui_Entity_FloatingMove_TweenDuration: 0.5
+  ui_Entity_FloatingMove_Cofactor: 50
+  ui_Entity_FloatingMove_Spawn_Cofactor: 50
   swipeThreshold: 2
+  ui_Entity_Scale_PunchSize: 0.25
+  ui_Entity_Scale_PunchSize_Duration: 0.5
+  input_horizontal_threshold: 1.5
+  input_horizontal_clamp: 17.5
+  ui_world_modifier_duration: 0.75
+  ui_world_announce_duration: 0.75
+  ui_world_indicator_speed: 1
+  ui_world_indicator_red: 0.25
+  ui_world_indicator_yellow: 0.5
+  ui_world_indicator_green: 1
+  player_target_checkDistance: 0.1
+  player_clamp_rotation: 45
+  player_speed_vertical: 8
+  player_speed_catwalking: 24
+  player_speed_horizontal: 0.7
+  player_speed_rotation: 90
+  player_speed_turning: 10
+  player_speed_approach: 5
+  player_speed_statusDepleting: 21
+  ball_delay_strike_point: 0.75
+  ball_duration_strike_point: 0.25
+  ball_curve_strike_point:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ball_duration_fly_point: 0.25
+  ball_curve_fly_point:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ball_delay_catch_point: 1.5
+  ball_duration_catch_point: 0.25
+  ball_curve_catch_point:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ball_height_max: 20
+  ball_height_cofactor_strike: 10
+  ball_height_deplete_speed: 1
+  ball_modify_cofactor_positive: 0.25
+  ball_modify_cofactor_negative: 0.15
+  camera_fieldOfView_duration: 0.5
+  camera_fieldOfView_normal: 60
+  camera_fieldOfView_catwalk: 90
+  camera_speed_follow: 5
+  camera_duration_movement: 1
+  camera_duration_moveAndLook: 0.5
+  camera_clamp_LevelEndRotation: 20
+  camera_speed_LevelEndRotation: 12.5
+  status_maxPoint: 200
